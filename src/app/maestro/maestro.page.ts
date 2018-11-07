@@ -2,7 +2,7 @@ import { Component, OnInit , Inject} from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import { Meta, Title } from "@angular/platform-browser";
 import {NavController, NavParams,LoadingController,ToastController,ActionSheetController,ModalController  } from '@ionic/angular';
-import { IMaestro } from '../interfaces/maestro';
+import { IMaestro } from '../interfaces/Maestro';
 import { MaestroProvider } from '../services/maestro/maestro';
 import { ProfileProvider } from '../services/profile/profile';
 //import { ModalPlaylistPage } from "../modal-playlist/modal-playlist";
