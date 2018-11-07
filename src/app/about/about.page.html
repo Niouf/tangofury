@@ -1,0 +1,93 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        
+        <ion-buttons slot="start">
+            <ion-back-button id="backButton" defaultHref="/"></ion-back-button> 
+        </ion-buttons>
+
+        <ion-title class='center' >About</ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content padding class='fg-content'>
+  <h1>About Tango Fury</h1>
+    <ion-card>
+      <ion-card-header class='card-menu'>
+        <ion-icon name="heart"></ion-icon> Do you like Tango Fury ?
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>Give some <ion-icon name="star"></ion-icon> to Tango Fury on the Google Play Store ! :) </p>
+        <p class='center'>
+          <ion-button (click)="rateTF()">
+            Rate Tango Fury
+          </ion-button>
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+
+    <ion-card>
+      <ion-card-header class='card-menu'>
+        <ion-icon name="information-circle"></ion-icon> About
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>This app has been backed with love by Fabien Grignoux. If you have any comment or suggestion please email me at fab.grignoux@gmail.com or join me on <a href="https://www.facebook.com/fabien.grignoux">Facebook</a>.</p>
+        <p>Hope to see you on the dancefloor ! :)</p>
+      </ion-card-content>
+    </ion-card>
+
+
+    <ion-card *ngIf="role!='visitor'">
+      <ion-card-header class='card-menu'>
+       <ion-icon name="settings"></ion-icon>  Parameters
+      </ion-card-header>
+      <ion-card-content >
+        <p>Lougout from Tango Fury ?</p>
+        <p class='center'>
+            <ion-button (click)="logOut()">
+              Logout
+            </ion-button>
+        </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="role=='admin'">
+    <ion-card-header class='card-menu' >
+      <ion-icon name="sync"></ion-icon> Administration
+    </ion-card-header>
+
+    <ion-card-content>
+        <p class='center'>
+          <ion-button (click)="importVideos()">
+            Import
+          </ion-button>
+          <strong>{{resultImport}}</strong>
+         </p>
+         <hr>
+         <p class='center'>
+           <ion-button (click)="clearVideos()">
+             Clear multiple items
+           </ion-button>
+           <strong>{{resultClear}}</strong>
+        </p>
+    </ion-card-content>
+  </ion-card>
+
+    <ion-card *ngIf="role=='admin'">
+      <ion-card-header class='card-menu' >
+        <ion-icon name="world"></ion-icon> Sitemap
+      </ion-card-header>
+      <ion-card-content>
+        <p *ngFor="let item of sitemap">
+          {{item}}
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+</ion-content>

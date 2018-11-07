@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tango Fury</title>
+  <meta name="description" content="Watch new tango performances every day and discover new amazing tango artists" />
+  <base href="/" />
+
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <meta property="og:title" content="Tango Fury : Watch new tango performances every day" />
+  <meta property="og:image" content="assets/img/tangofury-bandeau.png" />
+
+
+  <link rel="icon" type="image/png" href="assets/icon/favicon.png">
+
+  <!-- add to homescreen for ios -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
+<link rel="stylesheet" href="styles.640a5005cf9061c7b29a.css"></head>
+<body>
+  <!-- Github Pages hack to allow SPA refresh without receiving 404. -->
+  <script>
+      (function () {
+        // Retrieve the URL the user was trying to access when receiving the 404.
+        var redirect = sessionStorage.redirect;
+        // Remove the URL from sessionStorage.
+        delete sessionStorage.redirect;
+        // Check if we actually need to redirect.
+        if (redirect && redirect != location.href) {
+          // We need to redirect to the URL the user was trying to access.
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+  <!-- /Github Pages hack. -->
+  
+  <app-root></app-root>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-92976585-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-92976585-2');
+  </script>
+
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+<script type="text/javascript" src="runtime.72dae8c843730c54e5a3.js"></script><script type="text/javascript" src="polyfills.a2df1b4696d656b5f1d4.js"></script><script type="text/javascript" src="cordova.b8b05ba265b9ff1d69c8.js"></script><script type="text/javascript" src="main.8ed3b05b3b94814284a5.js"></script></body>
+</html>

@@ -1,0 +1,23 @@
+
+.text-video{
+    margin-left:1em;
+}
+
+.video-date{
+    text-align:right;
+}
+
+ion-item.video-seen{
+    background: var(--fg-item-seen);  
+}
+  
+ion-item.video-unseen{ 
+    background: var(--fg-item-unseen);
+    div{
+        background: var(--fg-item-unseen);
+    }
+}
+
+h3{
+    font-weight:bold;
+}

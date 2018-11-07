@@ -1,0 +1,56 @@
+<ion-header>
+    <app-menu></app-menu>
+</ion-header>
+
+
+<ion-content padding class='fg-content'>
+<div *ngIf="displayConnect == false">
+  <ion-show-when size="md, lg, xl"><h1>Your Playlists</h1></ion-show-when>
+  <ion-card>
+    <ion-card-header class='card-menu'>
+      Create a playlist
+    </ion-card-header>
+    <ion-card-content>
+        <form class='playlist-new' [formGroup]="playlistForm" (ngSubmit)="addPlaylist()" novalidate>
+          <ion-item>
+            <ion-label color="primary">Playlist title</ion-label>
+            <ion-input formControlName="playlistName" [(ngModel)]="namePl" placeholder="My awesome playlist"></ion-input>
+          </ion-item>
+          <p class='center'><ion-button  type="submit"><ion-icon name="add"></ion-icon> Create playlist</ion-button></p>
+        </form>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card *ngIf="listPlaylist.length > 0">
+      <ion-card-header class='card-menu'>
+        My playlists
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list listPlaylist  >
+          <ion-item *ngFor="let playList of listPlaylist">
+            <ion-label (click)="showPlaylist(playList)" class='clickable playlist-name'>
+              {{ playList.title }}
+            </ion-label>
+            <div  slot='end'>
+                <ion-button (click)="actionPlaylist(playList)"><ion-icon name='create'></ion-icon></ion-button>
+            </div>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+  </ion-card>
+</div>
+
+<div *ngIf="displayConnect == true">
+    <div class='center header'>
+        <h1>Please connect to Tango Fury</h1>
+        <p>Create an account and connect to Tango Fury to create your own playlists and manage your favorites maestros.</p>
+        <p>It's free and we won't send you any further email :).</p>
+        <p>    
+          <ion-button (click)='goToLogin()'>
+            <ion-icon name="person"></ion-icon> Connect
+          </ion-button>
+        </p>
+    </div>
+</div>
+</ion-content>

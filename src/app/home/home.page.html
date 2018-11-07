@@ -1,0 +1,116 @@
+<header>
+    <app-menu></app-menu>
+</header>
+  <ion-content padding class="fg-content">
+    <ion-show-when size="md, lg, xl" *ngIf="role == 'visitor'">
+        <div class='full-page'>
+            <ion-row class='title-tf'>
+                <ion-col>
+                    <h1><img src='assets/img/tangofury-inline.png' alt="tango fury"></h1>
+                    <p class='slogan'>Watch the best tango performances.</p>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="role == 'visitor'">
+                <ion-col size="6" size-sm="12" size-xs="12" size-md="6" size-lg="6" class='connect-box'>
+                    <h2>Connect to Tango Fury to access new fonctionnality</h2>
+                    <p>Create your account and connect to Tango Fury to manage your own playlists, your favorites maestros and sync all your data between your computers and app.</p>
+                    <p>It's free and we won't send you any further email :).</p>
+                    <p>    
+                        <ion-button (click)='goToLogin()'>
+                        <ion-icon name="person"></ion-icon> Connect
+                        </ion-button>
+                    </p>
+                </ion-col>
+        
+                <ion-col size="6" size-sm="12" size-xs="12" size-md="6" size-lg="6" class="card-background-page">
+                    <a class='center' href='https://play.google.com/store/apps/details?id=tango.fury&hl=en&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                        <ion-card *ngIf="role == 'visitor'">
+                            <ion-card-content class='center'>
+                                <img src="assets/img/hand2.jpg"/>
+                                <ion-label class='card-title'>Download the app !</ion-label>
+                                <ion-show-when size="md, lg, xl" class='card-subtitle center'>We build a nice mobile app that is faster and prettier <br/> than the website version. You should try it ! ;)
+                                    <ion-row>
+                                        <ion-col size="6" offset="3">
+                                                <img alt='Get it on Google Play' class='googleplay' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/>
+                                        </ion-col>
+                                    </ion-row> 
+                                </ion-show-when> 
+                            </ion-card-content>
+                        </ion-card>
+                    </a>
+                </ion-col>
+            </ion-row> 
+        </div>
+    </ion-show-when> 
+        
+
+      <ion-card *ngIf="(favoritesMaestros.length > 0)">
+          <ion-card-header class='card-menu'>
+            <ion-icon name="star"></ion-icon> Favorites
+          </ion-card-header>
+    
+          <ion-card-content>
+              <ion-grid class="card-background-page ">
+                  <ion-row>
+                    <ion-col *ngFor="let maestro of favoritesMaestros" size="4" size-sm="6" size-md="4" size-lg="2" size-xl='2'>
+                        <ion-card  (click)="goToDetail(maestro)"  >
+                          <img *ngIf="maestro.imageDisplay" class='clickable' src="assets/img/maestros/{{maestro.imageDisplay}}">
+                          <div *ngIf="(maestro.newvideos>0)" class="clickable card-title">+ {{maestro.newvideos}} videos</div>
+                        </ion-card>
+                    </ion-col>
+                  </ion-row>
+              </ion-grid>
+          </ion-card-content>
+      </ion-card>
+  
+  
+  
+      <ion-card >
+          <ion-card-header class='card-menu'>
+            <ion-icon name="images"></ion-icon> Selections
+          </ion-card-header>
+    
+          <ion-card-content>
+              <ion-grid class="selections">
+                  <ion-row>
+                    <ion-col *ngFor="let selection of selections" size="6" size-md="4" size-lg="3" size-xl="2">
+                        <ion-card class='clickable' (click)="goToPlaylist(selection)"  >
+                            <div class="half-black"><img src="{{selection.image}}"></div>
+                            <ion-card-subtitle class='center'>{{selection.title}}</ion-card-subtitle>
+                        </ion-card>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row align-items-center>
+                    <ion-col class='center'>
+                        <ion-button block  color="primary" (click)="goToAllselections()">
+                            <ion-icon name="arrow-down"></ion-icon> See all selections
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+                </ion-grid>
+          </ion-card-content>
+      </ion-card> 
+  
+  
+  
+  
+      <ion-card>
+          <ion-card-header class='card-menu'>
+            <ion-icon name="thumbs-up"></ion-icon> Tango Fury's favorites
+          </ion-card-header>
+    
+          <ion-card-content>
+            <app-item-video [videos]="topVideos" [role]="role" [display]="'blocks'"></app-item-video>
+            <ion-grid>
+                <ion-row align-items-center>
+                    <ion-col class='center'>
+                        <ion-button block  color="primary" (click)="loadMoreTopVideos()">
+                            <ion-icon name="arrow-down"></ion-icon> Watch more top videos
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+          </ion-card-content>
+      </ion-card> 
+  
+  </ion-content>

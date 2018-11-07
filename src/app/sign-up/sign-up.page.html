@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <div class='center'>
+            <img slot='secondary' (click)="goToAbout()" class='logo-tf clickable' alt='logo Tango Fury' src="assets/img/logo-tangofury.png"  >
+        </div>
+    </ion-toolbar>
+</ion-header>
+  
+  
+  <ion-content class='fg-content' padding>
+    <ion-card>
+        <ion-card-header class='card-menu'>
+          <ion-icon name="person"></ion-icon> Signup
+        </ion-card-header>
+        <ion-card-content>
+          <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
+            <ion-item> <ion-label stacked>Email</ion-label>
+              <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!signupForm.controls.email.valid"> </ion-input>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!signupForm.controls.email.valid && signupForm.controls.email.touched"> <p>Please enter a valid email.</p> </ion-item>
+            <ion-item>
+              <ion-label stacked>Password</ion-label>
+              <ion-input formControlName="password" type="password" placeholder="Your password" [class.invalid]="!signupForm.controls.password.valid"> </ion-input>
+            </ion-item> <ion-item class="error-message" *ngIf="!signupForm.controls.password.valid && signupForm.controls.password.touched"> <p>Your password needs more than 6 characters.</p> </ion-item>
+        
+            <ion-button block type="submit" [disabled]="!signupForm.valid"> Create an Account </ion-button>
+            <ion-button block (click)='goBack()'> cancel </ion-button>
+           </form>
+        </ion-card-content>
+    </ion-card>
+  </ion-content>

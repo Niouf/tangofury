@@ -1,0 +1,60 @@
+<ion-toolbar color="dark">
+    <div class='center'>
+      <ion-buttons slot="start">
+          <ion-back-button id="backButton" defaultHref="/"></ion-back-button> 
+      </ion-buttons>
+    
+    
+        <img slot='secondary' (click)="goToAbout()" class='logo-tf clickable' alt='logo Tango Fury' src="assets/img/logo-tangofury.png"  >
+    </div>
+    
+</ion-toolbar>
+
+<ion-content class='fg-content' padding>
+  <div class='center header'>
+      <h1>Welcome to Tango Fury</h1>
+      <p>Please connect and discover new tango videos everyday</p>
+  </div>
+
+  <ion-card>
+    <ion-card-header class='card-menu'>
+      <ion-icon name="person"></ion-icon> Connexion
+    </ion-card-header>
+    <ion-card-content>
+        <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+            <ion-item>
+              <ion-label stacked>Email</ion-label>
+              <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!loginForm.controls.email.valid"> </ion-input>
+            </ion-item>
+          
+            <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.touched">
+              <p>Please enter a valid email address.</p>
+            </ion-item>
+          
+            <ion-item>
+              <ion-label stacked>Password</ion-label>
+              <ion-input formControlName="password" type="password" placeholder="Your password" [class.invalid]="!loginForm.controls.password.valid"> </ion-input>
+            </ion-item>
+          
+            <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">
+              <p>Your password needs more than 6 characters.</p>
+            </ion-item>
+          
+            <div class='center'>
+                <ion-button  type="submit" [disabled]="!loginForm.valid"> Log In </ion-button>
+                <ion-button  color="medium" (click)="goToResetPassword()"> I forgot my password :( </ion-button>
+            </div>
+            
+          </form>
+
+    </ion-card-content>
+    
+  </ion-card>
+    
+  <div class='center'>
+      <div class='or'>or</div>
+      <p>If you are not already a member please<br/>
+      <ion-button   block clear (click)="goToSignup()"> Create a new account </ion-button>
+      </p>
+  </div>
+</ion-content>

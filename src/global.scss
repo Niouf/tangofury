@@ -1,0 +1,136 @@
+// http://ionicframework.com/docs/theming/
+@import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+
+
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+:root{
+  --ion-background-color:var(--fg-content);
+  --ion-item-background-color:var(--ion-color-primary-contrast);
+}
+
+ion-search-bar{
+  --ion-background-color:var(--fg-content);
+  background:var(--fg-content);
+}
+
+.fg-content-row{
+  color:#fff;
+}
+
+.input-wrapper{
+  padding:1em !important;
+}
+
+.hidden{
+  display:none;
+}
+
+/*
+ion-toolbar{
+  background-color:var(--fg-header);
+  .toolbar-title{
+    color:#fff;
+  }
+  button.button-native,.back-button-native{
+    color:white!important;
+  }
+
+  &.sub-bar{
+    background-color:var(--fg-sub-menu);
+  }
+}
+*/
+
+.logo-tf{
+  height:3em;
+  width:auto;
+}
+
+.clickable{
+  cursor: pointer;
+}
+
+
+ion-card-content,ion-searchbar,ion-list{
+  background-color:#fff !important;
+}
+
+.search-bar{
+  background-color:#fff !important;
+}
+
+h1{
+  margin-left:0.5em;
+  font-size:2em;
+  color:var(--h1);
+  margin-bottom:0.5em;
+}
+
+
+.fg-content,{
+  background-color:var(--fg-content);
+}
+
+ion-icon{
+  margin-right:4px;
+}
+
+/*
+@media screen and (min-width:790px){
+  ion-tabbar{
+    display:none !important;
+    padding-right:6000px;
+  }
+}
+*/
+
+.card-menu{
+  color:var(--fg-cards-title);
+  background:var(--fg-cards);
+}
+
+/*
+ion-tabs{
+  background:var(--fg-header);
+}
+*/
+
+.big-titles{
+  font-size:1.8em;
+  color:var(--fg-big-titles);
+  text-align:center;
+}
+
+.submenu{
+  color:#fff;
+}
+
+.lastVideosBlock{
+  margin-top:5em;
+}
+
+div .right{
+  float:right;
+}
+
+div .left{
+  float:left;
+}
+
+.center{
+  text-align:center;
+}
+
+
+
+.round{
+  border-radius: 50%;
+}

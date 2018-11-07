@@ -1,0 +1,89 @@
+<ion-header >
+  <ion-toolbar color="dark">
+    <ion-title>
+      Maestro
+    </ion-title>
+    <ion-buttons slot="end">
+        <ion-button (click)="dismiss()">
+            <span ion-text color="primary" showWhen="ios">Cancel</span>
+            <ion-icon name="close" showWhen="android,windows"></ion-icon>
+          </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class='fg-content' padding>
+
+  <ion-card>
+    <form class='person' [formGroup]="personForm" (ngSubmit)="process()" novalidate>
+        <ion-card-header class='card-menu'>
+          Maestro edition
+        </ion-card-header>
+        <ion-card-content>
+
+          <div *ngIf="roleUser == 'admin'"> 
+            <ion-item>
+                <ion-label color="primary">Key</ion-label>
+                <ion-input formControlName="personKey" [(ngModel)]="key" placeholder="EJLsdof123dd" ></ion-input>
+            </ion-item>
+            
+            <ion-item>
+                <ion-label color="primary">Surname</ion-label>
+                <ion-input formControlName="personSurname" [(ngModel)]="surname" placeholder="Mariano" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label color="primary">Name</ion-label>
+              <ion-input formControlName="personName" [(ngModel)]="name" placeholder="Frumboli" ></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary">Nickname</ion-label>
+                <ion-input formControlName="personNickname" [(ngModel)]="nickname" placeholder="chicho" ></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">Slug</ion-label>
+                <ion-input formControlName="personSlug" [(ngModel)]="slug" placeholder="mariano-chico-frumboli" ></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">Role</ion-label>
+                <ion-input formControlName="personRole" [(ngModel)]="role" placeholder="leader or follower" ></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">Website</ion-label>
+                <ion-input formControlName="personSite" [(ngModel)]="siteweb" placeholder="https://www.tango.com" ></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">Facebook</ion-label>
+                <ion-input formControlName="personFb" [(ngModel)]="fb" placeholder="https://facebook.com/..."></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">Wikipedia</ion-label>
+                <ion-input formControlName="personWikipedia" [(ngModel)]="wikipedia" placeholder="https://wikipedia.com/..." ></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">Description</ion-label>
+                <ion-input formControlName="personDescription" [(ngModel)]="description" placeholder="this is a description" ></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">Maestro image</ion-label>
+                <ion-input formControlName="personImage" [(ngModel)]="image" placeholder="image.png" ></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="primary">Not a unique name ?</ion-label>
+                <ion-checkbox formControlName="personHomonyme" [(ngModel)]="homonyme" ></ion-checkbox>
+            </ion-item>
+            <ion-button type="submit"  block [disabled]="!name" ><ion-icon name="checkmark" ></ion-icon> ok</ion-button>
+          </div>
+
+        </ion-card-content>
+    </form>
+  </ion-card>
+
+</ion-content>

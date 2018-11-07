@@ -1,0 +1,69 @@
+<ion-header>
+    <app-menu></app-menu>
+</ion-header>
+
+<ion-content padding class='fg-content'>
+    <ion-show-when size="md, lg, xl"><h1>Tango maestros</h1></ion-show-when>
+    <ion-card *ngIf="(favoritesMaestros.length > 0)">
+        <ion-card-header class='card-menu'>
+          <ion-icon name="star"></ion-icon> Favorites
+        </ion-card-header>
+  
+        <ion-card-content>
+            <ion-grid class="card-background-page ">
+                <ion-row>
+                  <ion-col *ngFor="let maestro of favoritesMaestros" size="6" size-sm="6" size-md="4" size-lg="2" size-xl='2'>
+                      <ion-card (click)="goToDetail(maestro)" class='clickable'  >
+                        <img *ngIf="maestro.imageDisplay" src="assets/img/thumbs/{{maestro.imageDisplay}}">
+                        <div *ngIf="(maestro.newvideos>0)" class="card-title">+ {{maestro.newvideos}} videos</div>
+                      </ion-card>
+                  </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+
+  <ion-card *ngIf="role=='admin'">
+      <ion-card-header class='card-menu'>
+          <ion-icon name="key" ></ion-icon> Administration
+      </ion-card-header>
+      <ion-card-content>
+        <p>
+          <ion-button (click)="addMaestro()">
+              <ion-icon name="add" ></ion-icon> Add a maestro
+          </ion-button>
+        </p>
+      </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header class='card-menu'>
+        <ion-icon name="people" ></ion-icon> All maestros
+    </ion-card-header>
+    <ion-card-content class="card-background-page ">
+        <ion-list>     
+            <ion-searchbar class='search-bar' color="light" animated (ionInput)="getItems($event)"></ion-searchbar>
+            <ion-item *ngFor="let maestro of maestros" lines="inset" detail-push >
+    
+              <ion-label>
+                  <ion-button fill="clear" href='/tabs/(tango-maestros:maestro-details/{{maestro.slug}})'>{{maestro.surname}} {{maestro.nickname}} {{maestro.name}}</ion-button>
+              </ion-label>
+              
+              <ion-badge slot="end" *ngIf="maestro.newvideos > 0">+{{maestro.newvideos}}</ion-badge>
+              <ion-button *ngIf="role == 'admin'" slot="end" (click)="actionMaestro(maestro)"><ion-icon name='cog' ></ion-icon> admin</ion-button>
+    
+              <div *ngIf="role != 'visitor'">
+                <ion-col slot="end" *ngIf="maestro.isFavorite == true">
+                  <ion-button fill="clear" (click)="toggleFavoriteMaetro(maestro)"><ion-icon name="star" ></ion-icon></ion-button>
+                </ion-col>
+                <ion-col slot="end" *ngIf="maestro.isFavorite == false">
+                  <ion-button fill="clear" (click)="toggleFavoriteMaetro(maestro)"><ion-icon name="star-outline" ></ion-icon></ion-button>
+                </ion-col>
+              </div>
+            </ion-item>
+         </ion-list>
+    </ion-card-content>
+   </ion-card>
+
+</ion-content>

@@ -1,0 +1,99 @@
+<ion-header>
+
+    <app-menu></app-menu>
+  
+    <ion-toolbar color="dark" class='sub-bar' no-border-top  >
+      <ion-segment [(ngModel)]="type" >
+        <ion-segment-button value="all">
+          All
+        </ion-segment-button>
+  
+        <ion-segment-button value="vals" >
+          Vals
+        </ion-segment-button>
+        <ion-segment-button  value="milonga" >
+          Milongas
+        </ion-segment-button>
+        <ion-segment-button  value="lesson" >
+          Lessons
+        </ion-segment-button>
+        <ion-segment-button  value="other">
+          Others
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  
+  </ion-header>
+  
+
+  
+  <ion-content padding class='fg-content'>
+    <ion-show-when size="md, lg, xl"><h1>Latest videos</h1></ion-show-when>
+
+    <div [ngSwitch]="type">
+      <ion-list *ngSwitchCase="'all'">
+        <app-item-video [videos]="videos" [role]="role" [display]="'classic'"></app-item-video>
+  
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event,offsetAll,'all')" 
+          loadingSpinner="bubbles"
+         loadingText="Loading more data…">
+        
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+     </ion-list>
+  
+  
+      <ion-list *ngSwitchCase="'vals'">
+  
+        <app-item-video [videos]="videosVals" [role]="role" [display]="'classic'"></app-item-video>
+  
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event,offsetVals,'vals')"
+          loadingSpinner="bubbles"
+          loadingText="Loading more data…">
+        >
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+  
+      </ion-list>
+  
+  
+      <ion-list *ngSwitchCase="'milonga'" >
+        <app-item-video [videos]="videosMilongas" [role]="role" [display]="'classic'"></app-item-video>
+  
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event,offsetMilongas,'milonga')"
+        loadingSpinner="bubbles"
+        loadingText="Loading more data…">
+        
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+  
+      </ion-list>
+  
+  
+  
+      <ion-list *ngSwitchCase="'lesson'">
+        <app-item-video [videos]="videosLessons" [role]="role" [display]="'classic'"></app-item-video>
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event,offsetLessons,'lesson')"
+        loadingSpinner="bubbles"
+        loadingText="Loading more data…">
+        
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-list>
+  
+  
+       <ion-list *ngSwitchCase="'other'">
+          <app-item-video [videos]="videosOthers" [role]="role" [display]="'classic'"></app-item-video>
+  
+         <ion-infinite-scroll (ionInfinite)="doInfinite($event,offsetOthers,'other')"
+         loadingSpinner="bubbles"
+         loadingText="Loading more data…">
+         
+           <ion-infinite-scroll-content></ion-infinite-scroll-content>
+         </ion-infinite-scroll>
+  
+      </ion-list>
+  
+    </div>
+
+  </ion-content>

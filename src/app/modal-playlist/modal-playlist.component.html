@@ -1,0 +1,43 @@
+<ion-header >
+  <ion-toolbar color="dark">
+    <ion-title>
+      Add to playlist
+    </ion-title>
+    <ion-buttons slot="end">
+        <ion-button (click)="dismiss()">
+            <span ion-text color="primary" showWhen="ios">Cancel</span>
+            <ion-icon name="close" showWhen="android,windows"></ion-icon>
+          </ion-button>
+    </ion-buttons>
+      
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class='fg-content' padding>
+  <ion-card>
+    <ion-card-header class='card-menu'>
+      Select a playlist
+    </ion-card-header>
+    <ion-list class='modal-selectPL' listPlaylist *ngIf="listPlaylist.length > 0" >
+      <ion-item *ngFor="let playList of listPlaylist" (click)="addToPlaylist(playList)">
+        <ion-label>{{ playList.title }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <form class='playlist-new' [formGroup]="playlistForm" (ngSubmit)="addPlaylist()" novalidate>
+        <ion-card-header class='card-menu'>
+          Create a playlist
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-label color="primary">Playlist title</ion-label>
+            <ion-input formControlName="playlistName" [(ngModel)]="namePl" placeholder="My awesome playlist"></ion-input>
+          </ion-item>
+          <ion-button type="submit" block [disabled]="!namePl" ><ion-icon name="add"></ion-icon> Create playlist</ion-button>
+        </ion-card-content>
+    </form>
+  </ion-card>
+
+</ion-content>

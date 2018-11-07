@@ -1,0 +1,127 @@
+<ion-header>
+
+  <ion-toolbar color="dark">
+      <ion-buttons slot="start">
+          <ion-back-button (click)="goToMaestros()" defaultHref="/"></ion-back-button>
+      </ion-buttons>
+
+    <ion-title class='center' *ngIf="maestro">{{maestro.surname }} {{maestro.nickname}} {{maestro.name}}</ion-title>
+
+  </ion-toolbar>
+
+
+
+  <ion-toolbar color="dark" class='sub-bar' no-border-top>
+      <ion-segment [(ngModel)]="type" >
+        <ion-segment-button value="all">
+          All
+        </ion-segment-button>
+  
+        <ion-segment-button value="vals">
+          Vals
+        </ion-segment-button>
+        <ion-segment-button  value="milonga">
+          Milongas
+        </ion-segment-button>
+        <ion-segment-button  value="lesson">
+          Lessons
+        </ion-segment-button>
+        <ion-segment-button  value="other">
+          Others
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding class='fg-content'>
+    <ion-card>
+        <ion-card-content *ngIf="maestro">
+          <ion-grid class="card-background-page ">
+            <ion-row>
+              <ion-col size="4" size-md="2" size-xl="1" >
+                <img class='round' *ngIf="maestro.imageDisplay" src="assets/img/maestros/{{maestro.imageDisplay}}">
+              </ion-col>
+    
+              <ion-col  size="8" size-md="10" size-xl="11" >
+                <h1>Videos of {{maestro.surname }} {{maestro.nickname}} {{maestro.name}}</h1>
+                <p ><ion-button ion-button color="light" *ngIf="(maestro.facebook !='')" (click)="openLink(maestro.facebook)"><ion-icon name="logo-facebook"></ion-icon> Facebook</ion-button>
+                <br *ngIf="(maestro.siteweb !='')"><ion-button color="light" *ngIf="(maestro.siteweb !='')" (click)="openLink(maestro.siteweb)"><ion-icon name="link"></ion-icon> Website</ion-button>
+                <br *ngIf="(maestro.wikipedia !='')"><ion-button color="light" *ngIf="(maestro.wikipedia !='')" (click)="openLink(maestro.wikipedia)">Wikipedia</ion-button>
+                <p *ngIf="(maestro.description !='')">{{maestro.description}}</p>
+
+                <div *ngIf="role == 'admin' || role=='user'">
+                  <div *ngIf="isFavorite == true">
+                    <ion-button ion-button round (click)="toggleFavoriteMaetro(maestro)">
+                      <span class='large-txt' ><ion-icon name="star" ></ion-icon></span>
+                      remove from favorites
+                    </ion-button>
+                  </div>
+          
+                  <div *ngIf="isFavorite == false">
+                    <ion-button color="primary" (click)="toggleFavoriteMaetro(maestro)">
+                      <span class='large-txt' ><ion-icon name="star-outline" ></ion-icon></span>
+                      add to favorites
+                    </ion-button>
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+     </ion-card>
+
+
+     <div [ngSwitch]="type">
+      <ion-list *ngSwitchCase="'all'">
+        
+        <app-item-video [videos]="videos" [role]="role" [display]="'classic'"></app-item-video>
+        
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event,offsetAll,'all')">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+  
+     </ion-list>
+  
+  
+      <ion-list *ngSwitchCase="'vals'">
+  
+        <app-item-video [videos]="videosVals" [role]="role" [display]="'classic'"></app-item-video>
+  
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event,offsetVals,'vals')">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+  
+      </ion-list>
+  
+  
+      <ion-list *ngSwitchCase="'milonga'" >
+          <app-item-video [videos]="videosMilongas" [role]="role" [display]="'classic'"></app-item-video>
+  
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event,offsetMilongas,'milonga')">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+  
+      </ion-list>
+  
+      <ion-list *ngSwitchCase="'lesson'">
+        <app-item-video [videos]="videosLessons" [role]="role" [display]="'classic'"></app-item-video>
+  
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event,offsetLesson,'lesson')">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+     </ion-list>
+  
+  
+       <ion-list *ngSwitchCase="'other'">
+          <app-item-video [videos]="videosOthers" [role]="role" [display]="'classic'"></app-item-video>
+  
+         <ion-infinite-scroll (ionInfinite)="doInfinite($event,offsetOther,'other')">
+           <ion-infinite-scroll-content></ion-infinite-scroll-content>
+         </ion-infinite-scroll>
+  
+      </ion-list>
+  
+    </div>
+     
+</ion-content>

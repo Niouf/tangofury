@@ -1,0 +1,62 @@
+<div *ngIf="display=='classic'">  
+  <ion-list>
+      <ion-item *ngFor="let video of videos"    lines="inset" [color]="false===video.seen?'medium':'light'" [ngClass]="true===video.seen?'video-seen':'video-unseen'">
+          <ion-thumbnail class='clickable' (click)="playVideo(video)"  item-start>
+            <img class='image-video' src="{{video.urlImage}}">
+          </ion-thumbnail>
+          <ion-label text-wrap class='text-video clickable' (click)="playVideo(video)">
+              <ion-text><h3><span class='video-title' >{{video.title}}</span> </h3></ion-text>
+              <ion-text><p><span class='video-date' >{{video.datePublication | date: 'dd/MM/yyyy'}} {{video.type}}</span></p></ion-text>
+          </ion-label>
+          <ion-button *ngIf="role == 'admin' || role=='user'" slot="end" (click)="addPlaylistModal(video)"><ion-icon name='add-circle' ></ion-icon></ion-button>
+          <ion-button *ngIf="role == 'admin'" slot="end" (click)="actionVideo(video)"><ion-icon name='cog' ></ion-icon></ion-button>
+      </ion-item>
+      
+  </ion-list>
+  <ion-item text-wrap *ngIf="1 > videos.length " >
+      No videos found. 
+  </ion-item>
+</div>
+
+
+<ion-grid *ngIf="display=='blocks' || display=='playlist'">
+  <ion-row>
+    <ion-col  *ngFor="let video of videos" size="12" size-sm="6" size-lg="4" size-xl='3'>
+        <ion-card  >
+          
+          <img class='clickable'  src="{{video.urlImage}}" (click)="playVideo(video)"/>
+          <ion-card-content>
+            <p class='video-date'>
+              <span >{{video.type}} {{video.datePublication | date: 'dd/MM/yyyy' }}</span>
+            </p>
+            
+            <ion-card-title class='clickable' (click)="playVideo(video)">
+              {{video.title}}
+            </ion-card-title>
+
+            
+                <div>
+                  <ion-button *ngIf="role == 'admin' || role=='user'" expand="full" clear small icon-start (click)="addPlaylistModal(video)">
+                    <ion-icon name='add'></ion-icon>
+                    Add to playlist
+                  </ion-button>
+                </div>
+
+                <div *ngIf="display != 'playlist'">
+                  <ion-button text-right *ngIf="role == 'admin'" expand="full" clear small color="dark" (click)="removeTopVideo(video)" icon-start>
+                    <ion-icon name='remove'></ion-icon>
+                    remove
+                  </ion-button>
+                </div>
+
+                  <div *ngIf="display == 'playlist'">
+                    <ion-button text-right *ngIf="role == 'admin'" expand="full" clear small color="dark" (click)="removeVideoFromPlaylist(video,playlist)" icon-start>
+                      <ion-icon name='remove'></ion-icon>
+                      remove
+                    </ion-button>
+                  </div>
+          </ion-card-content>
+        </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

@@ -1,0 +1,60 @@
+<ion-header >
+  <ion-toolbar color="dark">
+    <ion-title>
+      Modify playlist
+    </ion-title>
+    <ion-buttons slot="end">
+        <ion-button (click)="dismiss()">
+            <span ion-text color="primary" showWhen="ios">Cancel</span>
+            <ion-icon name="close" showWhen="android,windows"></ion-icon>
+          </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class='fg-content' padding>
+
+  <ion-card>
+    <form class='playlist-new' [formGroup]="playlistForm" (ngSubmit)="modifyPlaylist()" novalidate>
+        <ion-card-header class='card-menu'>
+          Modify your playlist
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-label color="primary">Playlist title</ion-label>
+            <ion-input formControlName="playlistName" [(ngModel)]="namePl" placeholder="My awesome playlist" ></ion-input>
+          </ion-item>
+          
+          <div *ngIf="role == 'admin'">
+              <ion-item>
+                  <ion-label color="primary">Is this a selection ?</ion-label>
+                  <ion-checkbox formControlName="playlistSelection" [(ngModel)]="selectionPl" ></ion-checkbox>
+              </ion-item>
+  
+              <ion-item>
+                  <ion-label color="primary">Playlist's image</ion-label>
+                  <ion-input formControlName="playlistImage" [(ngModel)]="imagePl" placeholder="image.png" ></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                  <ion-label color="primary">Playlist description</ion-label>
+                  <ion-input formControlName="playlistDescription" [(ngModel)]="descriptionPl" placeholder="My description :)" ></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label color="primary">Playlist image</ion-label>
+                <input type="file" name="fileChoosen" id="fileChoosen"  (change)="onFileSelected($event)">
+                <ion-button ion-fab color="primary" (click)="uploadToStorage()">
+                  <ion-icon name="cloud-upload"></ion-icon>
+                </ion-button>
+                <div class='imageLoaded'>{{ imageLoaded }}</div>
+              </ion-item>
+          </div>
+
+
+          <ion-button type="submit" block [disabled]="!namePl" ><ion-icon name="checkmark" ></ion-icon> Modify playlist</ion-button>
+        </ion-card-content>
+    </form>
+  </ion-card>
+
+</ion-content>

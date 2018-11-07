@@ -1,0 +1,16 @@
+ion-button{
+    background-color: transparent;
+    color:var(--ion-color-primary-contrast);
+    margin-right:1em;
+    &:hover{
+        color:var(--ion-color-primary);
+    }
+    //margin-top: -4.5em;
+    margin-top:1em;
+}
+
+.toolbar-tf{
+    .logo-tf{
+        height:4.5em;
+    }
+}

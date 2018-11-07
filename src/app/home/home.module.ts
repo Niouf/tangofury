@@ -1,0 +1,31 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HomePage } from './home.page';
+import { ItemVideoModule } from '../item-video/item-video.module';
+import { FooterModule } from '../footer/footer.module';
+import { MenuModule } from '../menu/menu.module';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    ItemVideoModule,
+    FooterModule,
+    MenuModule,
+    ReactiveFormsModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: HomePage
+      }
+    ])
+  ],
+  declarations: [
+    HomePage,
+  ]
+})
+export class HomePageModule {}

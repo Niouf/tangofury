@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-toolbar color="fg-header">
+        
+          <ion-buttons slot="start">
+              <ion-back-button id="backButton" defaultHref="/"></ion-back-button>
+          </ion-buttons>
+          <ion-buttons slot='end'>
+            <ion-button icon-only (click)="goToAbout()">
+              <ion-icon name="information-circle"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-title class='center' *ngIf="playlist">{{playlist.title}}</ion-title>
+      </ion-toolbar>
+</ion-header>
+
+<ion-content padding class='fg-content'>
+    <ion-show-when size="md, lg, xl"><h1 *ngIf="playlist">{{playlist.title}}</h1></ion-show-when>
+    <ion-grid>
+            <app-item-video [videos]="videos" [role]="role" [display]="'playlist'" [playlist]="playlist"></app-item-video>
+    </ion-grid>
+</ion-content>

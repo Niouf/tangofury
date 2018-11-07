@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "594224538752",
+    "firebase_url": "https://tango-videos-2ce36.firebaseio.com",
+    "project_id": "tango-videos-2ce36",
+    "storage_bucket": "tango-videos-2ce36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594224538752:android:2bc7a7cea42b8183",
+        "android_client_info": {
+          "package_name": "com.github.cordova_plugin_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "594224538752-5r2vkdmajr8vi7fo71mo2d9lfr7n7meh.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "594224538752-5r2vkdmajr8vi7fo71mo2d9lfr7n7meh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCktoCPcOcFr3bfbPcgNHrQt4H5aSfHZhs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

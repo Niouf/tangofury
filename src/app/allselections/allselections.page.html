@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        
+        <ion-buttons slot="start">
+            <ion-back-button id="backButton" defaultHref="/"></ion-back-button> 
+        </ion-buttons>
+
+        <ion-title class='center' >All tango selections</ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding class='fg-content'>
+
+  <ion-card >
+    <ion-card-header class='card-menu'>
+      <ion-icon name="images"></ion-icon> All selections
+    </ion-card-header>
+
+    <ion-card-content>
+        <ion-grid class="selections">
+            <ion-row>
+              <ion-col *ngFor="let selection of selections" size="6" size-md="4" size-lg="3" size-xl="2">
+                  <ion-card class='clickable' (click)="goToPlaylist(selection)"  >
+                      <div class="half-black"><img src="{{selection.image}}"></div>
+                      <ion-card-subtitle class='center'>{{selection.title}}</ion-card-subtitle>
+                  </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+    </ion-card-content>
+</ion-card> 
+
+</ion-content>

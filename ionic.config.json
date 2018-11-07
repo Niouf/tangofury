@@ -1,0 +1,7 @@
+{
+  "name": "tango.fury",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

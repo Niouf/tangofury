@@ -1,0 +1,28 @@
+.ion-tabbar{
+    a{
+        color:white !important;
+    }
+    
+}
+
+a.tab-btn-selected{
+    color:white !important;
+}
+
+.tabbar-tangofury{
+    @media screen and (min-width:790px){
+        padding-top:60px;
+      }
+}
+
+.toolbar-tf{
+    
+    .logo-tf{
+        //height:2.5em;
+
+        @media screen and (min-width:790px){
+            height:3.5em;
+          }
+        
+    }
+}

@@ -1,0 +1,109 @@
+  .full-page{
+
+
+    .title-tf{
+      text-align:center;
+      margin-top:4em;
+      margin-bottom:6em;
+    }
+
+    .slogan{
+      font-size:1.7em;
+      color:var(--ion-color-primary-contrast);
+      margin-top:-0.7em;
+    }
+
+    h1{
+      width:100%;
+    }
+  }
+  
+  
+  .selections{
+    .card-title{
+      font-size:1.2em;
+      text-align:center;
+    }
+  }
+
+
+    .card-background-page {
+      
+        .half-class{
+          background:black;
+        }
+
+        img{
+          
+        }
+
+        ion-card {
+          position: relative;
+          text-align: center;
+          
+        }
+      
+        .card-title {
+          position: absolute;
+          top: 36%;
+          font-size: 1.2em;
+          width: 100%;
+          font-weight: bold;
+          color: #fff;
+          text-shadow: 0 1px 0 black;
+          height:3em;
+        }
+
+
+      
+        .card-subtitle {
+          font-size: 1.1em;
+          position: absolute;
+          top: 52%;
+          width: 100%;
+          color: #fff;
+        }
+      
+      }
+
+h2{
+  font-size:1.8em;
+  color:var(--fg-color-primary-lighter);
+}
+
+.googleplay{
+  max-width:200px;
+}
+
+.connect-box{
+  color:var(--fg-color-on-dark-light);
+}
+
+.card-background-page {
+
+  ion-card {
+    position: relative;
+    text-align: center;
+  }
+
+  .card-title {
+    position: absolute;
+    top: 15%;
+    font-size: 2.2em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+    margin-right:15px;
+  }
+
+  .card-subtitle {
+    font-size: 1.5em;
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    color: #fff;
+    margin-right:15px;
+    text-align:center;
+  }
+
+}
