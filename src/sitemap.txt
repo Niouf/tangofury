@@ -252,12 +252,14 @@ https://www.tangofury.com/tabs/(tango-maestros:maestro-details/homer-ladas)
 
 https://www.tangofury.com/tabs/(tango-maestros:maestro-details/cristina-ladas)
 
-http://localhost:8100/tabs/(home:selection/NbtwzggJpfYmu1rN4lqdCNBBSVu1/-LIe5J_PqhK1yssBpto-)
+https://www.tangofury.com/tabs/(home:selection/NbtwzggJpfYmu1rN4lqdCNBBSVu1/-LPKGF4RBYWpb0jHb6U9)
 
-http://localhost:8100/tabs/(home:selection/NbtwzggJpfYmu1rN4lqdCNBBSVu1/-LJYqW2rY355vTPzGonc)
+https://www.tangofury.com/tabs/(home:selection/NbtwzggJpfYmu1rN4lqdCNBBSVu1/-LK1UWL6qVCyHNCy9aVf)
 
-http://localhost:8100/tabs/(home:selection/NbtwzggJpfYmu1rN4lqdCNBBSVu1/-LJcFFVClfzu1AqKJzM3)
+https://www.tangofury.com/tabs/(home:selection/NbtwzggJpfYmu1rN4lqdCNBBSVu1/-LJe6gQIfIkj_-pmYiNg)
 
-http://localhost:8100/tabs/(home:selection/NbtwzggJpfYmu1rN4lqdCNBBSVu1/-LJe6gQIfIkj_-pmYiNg)
+https://www.tangofury.com/tabs/(home:selection/NbtwzggJpfYmu1rN4lqdCNBBSVu1/-LJcFFVClfzu1AqKJzM3)
 
-http://localhost:8100/tabs/(home:selection/NbtwzggJpfYmu1rN4lqdCNBBSVu1/-LK1UWL6qVCyHNCy9aVf) 
+https://www.tangofury.com/tabs/(home:selection/NbtwzggJpfYmu1rN4lqdCNBBSVu1/-LJYqW2rY355vTPzGonc)
+
+https://www.tangofury.com/tabs/(home:selection/NbtwzggJpfYmu1rN4lqdCNBBSVu1/-LIe5J_PqhK1yssBpto-) 
