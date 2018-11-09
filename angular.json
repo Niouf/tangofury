@@ -36,11 +36,6 @@
               "input": "src",
               "output": "/"
               },
-              {
-              "glob": "src/sitemap.txt",
-              "input": "src",
-              "output": "./sitemap"
-              },
               "src/manifest.json"
             ],
             "styles": [
