@@ -53,10 +53,12 @@
               <ion-grid class="card-background-page ">
                   <ion-row>
                     <ion-col *ngFor="let maestro of favoritesMaestros" size="4" size-sm="6" size-md="4" size-lg="2" size-xl='2'>
-                        <ion-card  (click)="goToDetail(maestro)"  >
-                          <img *ngIf="maestro.imageDisplay" class='clickable' src="assets/img/maestros/{{maestro.imageDisplay}}">
-                          <div *ngIf="(maestro.newvideos>0)" class="clickable card-title">+ {{maestro.newvideos}} videos</div>
-                        </ion-card>
+                        <ion-item class='activated' href="/tabs/(tango-maestros:maestro-details/{{maestro.slug}})" >
+                            <ion-card >
+                                <img *ngIf="maestro.imageDisplay" class='' src="assets/img/maestros/{{maestro.imageDisplay}}">
+                                <div *ngIf="(maestro.newvideos>0)" class=" card-title">+ {{maestro.newvideos}} videos</div>
+                            </ion-card>
+                        </ion-item>
                     </ion-col>
                   </ion-row>
               </ion-grid>
@@ -74,15 +76,17 @@
               <ion-grid class="selections">
                   <ion-row>
                     <ion-col *ngFor="let selection of selections" size="6" size-md="4" size-lg="3" size-xl="2">
-                        <ion-card class='clickable' (click)="goToPlaylist(selection)"  >
-                            <div class="half-black"><img src="{{selection.image}}"></div>
-                            <ion-card-subtitle class='center'>{{selection.title}}</ion-card-subtitle>
-                        </ion-card>
+                        <ion-item class='activated' href="/tabs/(home:selection/NbtwzggJpfYmu1rN4lqdCNBBSVu1/{{selection.key}})" >
+                            <ion-card  >
+                                <div class="half-black"><img src="{{selection.image}}"></div>
+                                <ion-card-subtitle class='center'>{{selection.title}}</ion-card-subtitle>
+                            </ion-card>
+                        </ion-item>
                     </ion-col>
                   </ion-row>
                   <ion-row align-items-center>
                     <ion-col class='center'>
-                        <ion-button block  color="primary" (click)="goToAllselections()">
+                        <ion-button block  color="primary" href="/tabs/(home:tango-selections-all)">
                             <ion-icon name="arrow-down"></ion-icon> See all selections
                         </ion-button>
                     </ion-col>
