@@ -37,9 +37,9 @@
               "output": "/"
               },
               {
-              "glob": "_redirects",
+              "glob": "sitemap.txt",
               "input": "src",
-              "output": "/"
+              "output": "./sitemap.txt"
               },
               "src/manifest.json"
             ],
