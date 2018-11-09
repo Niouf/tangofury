@@ -37,9 +37,9 @@
               "output": "/"
               },
               {
-              "glob": "sitemap.txt",
+              "glob": "src/sitemap.txt",
               "input": "src",
-              "output": "./sitemap.txt"
+              "output": "./sitemap"
               },
               "src/manifest.json"
             ],
