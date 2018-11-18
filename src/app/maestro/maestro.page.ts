@@ -7,6 +7,7 @@ import { MaestroProvider } from '../services/maestro/maestro';
 import { ProfileProvider } from '../services/profile/profile';
 //import { ModalPlaylistPage } from "../modal-playlist/modal-playlist";
 import { VideoProvider } from '../services/video/video';
+import { GeneralProvider } from '../services/general/general';
 
 
 @Component({
@@ -46,7 +47,8 @@ export class MaestroPage implements OnInit {
       public toastCtrl: ToastController,
       private loadingCtrl:LoadingController,
       private titleService: Title,
-      public metaService:Meta
+      public metaService:Meta,
+      public generalService:GeneralProvider,
     ) {
       this.slug=  this.route.snapshot.params['slug'];
       this.initMaestro(this.slug);
@@ -57,8 +59,12 @@ export class MaestroPage implements OnInit {
       );
   }
 
+
+
+
   async initMaestro(slug){
-    
+    await this.generalService.initPage();
+
     let loading = await this.loadingCtrl.create({
       message: 'Loading maestro',
     });
@@ -258,7 +264,11 @@ export class MaestroPage implements OnInit {
     )
   }
 
-
+  doRefresh(event) {
+    this.initMaestro(this.slug).then(()=>{
+      event.target.complete();
+    });
+  }
 
 
   doInfinite(infiniteScroll,offset,type) {

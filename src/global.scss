@@ -134,3 +134,7 @@ div .left{
 .round{
   border-radius: 50%;
 }
+
+.refresher-md .refresher-pulling-icon, .refresher-md .refresher-pulling-text, .refresher-md .refresher-refreshing-icon, .refresher-md .refresher-refreshing-text{
+      color:var(--ion-color-primary);
+}

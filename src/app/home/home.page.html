@@ -2,6 +2,15 @@
     <app-menu></app-menu>
 </header>
   <ion-content padding class="fg-content">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="Pull to refresh"
+            refreshingSpinner="circles"
+            refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+
     <ion-show-when size="md, lg, xl" *ngIf="role == 'visitor'">
         <div class='full-page'>
             <ion-row class='title-tf'>

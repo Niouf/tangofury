@@ -103,6 +103,11 @@ export class HomePage {
     });
   }
 
+  doRefresh(event) {
+    this.loadInfos().then(()=>{
+      event.target.complete();
+    });
+  }
 
 
 

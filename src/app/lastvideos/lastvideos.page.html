@@ -28,8 +28,18 @@
 
   
   <ion-content padding class='fg-content'>
-    <ion-show-when size="md, lg, xl"><h1>Latest videos</h1></ion-show-when>
+  
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Pull to refresh"
+          refreshingSpinner="circles"
+          refreshingText="Refreshing...">
+        </ion-refresher-content>
+      </ion-refresher>
 
+      
+    <ion-show-when size="md, lg, xl"><h1>Latest videos</h1></ion-show-when>
     <div [ngSwitch]="type">
       <ion-list *ngSwitchCase="'all'">
         <app-item-video [videos]="videos" [role]="role" [display]="'classic'"></app-item-video>

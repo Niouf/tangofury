@@ -78,8 +78,22 @@ export class LastvideosPage {
       this.loadOthers(0); 
     }
     );
+  }
 
+  ngOnInit() {
 
+    // Try to remove META-Tags
+    try{
+      document.querySelector("meta[name='description']").remove();
+    } catch (e){
+  
+    }
+  
+    // Add the new META-Tags
+    var description = document.createElement('meta');
+    description.name = "description";
+    description.content = "Watch all the latest tango videos uploaded on youtube";
+    document.getElementsByTagName('head')[0].appendChild(description);
   }
 
   async loadInfos(){
@@ -93,6 +107,7 @@ export class LastvideosPage {
   ionViewWillEnter(){
 
   }
+
 
   async loadVideos(offset){
     let loading = await this.loadingCtrl.create({
@@ -227,6 +242,11 @@ export class LastvideosPage {
 
 
 
+  doRefresh(event) {
+    this.loadInfos().then(()=>{
+      event.target.complete();
+    });
+  }
 
 
   doInfinite(infiniteScroll,offset,type) {
@@ -277,20 +297,6 @@ export class LastvideosPage {
     //this.navCtrl.goForward('/about');
   }
 
-  ngOnInit() {
 
-    // Try to remove META-Tags
-    try{
-      document.querySelector("meta[name='description']").remove();
-    } catch (e){
-  
-    }
-  
-    // Add the new META-Tags
-    var description = document.createElement('meta');
-    description.name = "description";
-    description.content = "Watch all the latest tango videos uploaded on youtube";
-    document.getElementsByTagName('head')[0].appendChild(description);
-  }
 
 }
