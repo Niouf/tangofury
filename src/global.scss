@@ -21,6 +21,10 @@ ion-search-bar{
   background:var(--fg-content);
 }
 
+ion-content{
+  text-align:left;
+}
+
 .fg-content-row{
   color:#fff;
 }
@@ -48,6 +52,31 @@ ion-toolbar{
   }
 }
 */
+
+.show-when-lg {
+  display: none;
+}
+.show-when-sm {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .show-when-lg {
+    display: block;
+  }
+  .hide-when-lg {
+    display: none;
+  }
+}
+
+@media (min-width: 576px) {
+  .show-when-sm {
+    display: block;
+  }
+  .hide-when-sm {
+    display: none;
+  }
+}
 
 .logo-tf{
   height:3em;

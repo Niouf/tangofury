@@ -1,8 +1,14 @@
-.ion-tabbar{
+ion-tab-bar{
     a{
         color:white !important;
     }
-    
+    background:var(--ion-tab-bar-background);
+}
+ion-tab-button{
+    color:white;
+    &.tab-selected{
+        color:var(--ion-color-dark-contrast);
+    }
 }
 
 a.tab-btn-selected{
@@ -15,14 +21,17 @@ a.tab-btn-selected{
       }
 }
 
-.toolbar-tf{
     
-    .logo-tf{
-        //height:2.5em;
-
-        @media screen and (min-width:790px){
-            height:3.5em;
-          }
+.logo-tf{
+    height:6em;
+    position:fixed;
+    @media screen and (min-width:790px){
+        height:5em;
         
-    }
+        }
+    @media screen and (max-width:790px){
+        margin-top:-3em;
+        
+  }
+    
 }

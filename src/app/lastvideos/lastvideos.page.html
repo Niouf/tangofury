@@ -39,7 +39,7 @@
       </ion-refresher>
 
       
-    <ion-show-when size="md, lg, xl"><h1>Latest videos</h1></ion-show-when>
+    <div class='show-when-lg'><h1>Latest videos</h1></div>
     <div [ngSwitch]="type">
       <ion-list *ngSwitchCase="'all'">
         <app-item-video [videos]="videos" [role]="role" [display]="'classic'"></app-item-video>

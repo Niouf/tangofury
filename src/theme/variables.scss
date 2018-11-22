@@ -26,11 +26,13 @@
   --ion-color-primary-rgb: 72,138,255;
   --ion-color-primary-contrast: #fff;
   --ion-color-primary-contrast-rgb: 255,255,255;
-  --ion-color-primary-shade: #3f79e0;
-  --ion-color-primary-tint: #5a96ff;
+  --ion-color-primary-shade: #8f4b40;
+  --ion-color-primary-tint:: #8f4b40;
 
     /** dark **/
+    --ion-item-background:white;
     --ion-color-dark: rgb(51, 51, 51);
+    --ion-tab-bar-background:rgb(51, 51, 51);
     --ion-color-dark-rgb: 34,34,34;
     --ion-color-dark-contrast: #cd6858;
     --ion-color-dark-contrast-rgb: 255,255,255;

@@ -11,7 +11,7 @@
         </ion-refresher-content>
     </ion-refresher>
 
-    <ion-show-when size="md, lg, xl" *ngIf="role == 'visitor'">
+    <div class='show-when-lg' *ngIf="role == 'visitor'">
         <div class='full-page'>
             <ion-row class='title-tf'>
                 <ion-col>
@@ -37,20 +37,20 @@
                             <ion-card-content class='center'>
                                 <img src="assets/img/hand2.jpg"/>
                                 <ion-label class='card-title'>Download the app !</ion-label>
-                                <ion-show-when size="md, lg, xl" class='card-subtitle center'>We build a nice mobile app that is faster and prettier <br/> than the website version. You should try it ! ;)
+                                <div class='card-subtitle center show-when-lg'>We build a nice mobile app that is faster and prettier <br/> than the website version. You should try it ! ;)
                                     <ion-row>
                                         <ion-col size="6" offset="3">
                                                 <img alt='Get it on Google Play' class='googleplay' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/>
                                         </ion-col>
                                     </ion-row> 
-                                </ion-show-when> 
+                                </div> 
                             </ion-card-content>
                         </ion-card>
                     </a>
                 </ion-col>
             </ion-row> 
         </div>
-    </ion-show-when> 
+    </div> 
         
 
       <ion-card *ngIf="(favoritesMaestros.length > 0)">

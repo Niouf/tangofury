@@ -1,10 +1,12 @@
 
-
-<ion-show-when size="md, lg, xl">
+<!--
+<div class='show-when-lg'>
+  
     <ion-toolbar class='center toolbar-tf'  color="dark">
         <img (click)="goToAbout()" class='logo-tf clickable' alt='logo Tango Fury' src="assets/img/logo-tangofury.png"  >       
     </ion-toolbar>
-</ion-show-when>
+  
+</div>
 
   <ion-fab *ngIf="role == 'visitor' && loginDisplay == true" vertical="top" horizontal="end" slot="fixed">
     <ion-fab-button (click)='goToLogin()'>
@@ -26,5 +28,85 @@
       <ion-router-outlet name="playlist-list"></ion-router-outlet>
     </ion-tab>
   </ion-tabs>
+-->
+<!--
+<ion-tabs>
 
+    <ion-tab tab="home">
+      <ion-router-outlet name="home"></ion-router-outlet>
+    </ion-tab>
+    <ion-tab tab="about">
+      <ion-router-outlet name="about"></ion-router-outlet>
+    </ion-tab>
+    <ion-tab tab="contact">
+      <ion-router-outlet name="contact"></ion-router-outlet>
+    </ion-tab>
+  
+    <ion-tab-bar slot="bottom">
+  
+      <ion-tab-button tab="home" href="/tabs/(home:home)">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="about" href="/tabs/(about:about)">
+        <ion-icon name="information-circle"></ion-icon>
+        <ion-label>About</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="contact" href="/tabs/(contact:contact)">
+        <ion-icon name="contacts"></ion-icon>
+        <ion-label>Contact</ion-label>
+      </ion-tab-button>
+  
+    </ion-tab-bar>
+  
+  </ion-tabs>
+-->
+
+<ion-tabs color="dark" class='center toolbar-tf'>
+  <ion-tab tab="home">
+    <ion-router-outlet name="home"></ion-router-outlet>
+  </ion-tab>
+  <ion-tab tab="about">
+    <ion-router-outlet name="about"></ion-router-outlet>
+  </ion-tab>
+  <ion-tab tab="latest">
+    <ion-router-outlet name="latest"></ion-router-outlet>
+  </ion-tab>
+  <ion-tab tab="tango-maestros">
+      <ion-router-outlet name="tango-maestros"></ion-router-outlet>
+    </ion-tab>
+    <ion-tab tab="playlist-list">
+        <ion-router-outlet name="playlist-list"></ion-router-outlet>
+      </ion-tab>
+  <ion-tab-bar [slot]="tabPlacement">
+
+      <ion-tab-button tab="home" href="/tabs/(home:home)">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="latest" href="/tabs/(latest:latest)">
+        <ion-icon name="film"></ion-icon>
+        <ion-label>Latest</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="about"(click)="goToAbout()">
+        <img (click)="goToAbout()" class='logo-tf clickable' alt='logo Tango Fury' src="assets/img/logo-tangofury.png"  >
+      </ion-tab-button>
+  
+      <ion-tab-button tab="tango-maestros" href="/tabs/(tango-maestros:tango-maestros)">
+        <ion-icon name="star"></ion-icon>
+        <ion-label>Maestros</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="playlist-list" href="/tabs/(playlist-list:playlist-list)">
+        <ion-icon name="albums"></ion-icon>
+        <ion-label>Playlists</ion-label>
+      </ion-tab-button>
+
+
+  </ion-tab-bar>
+</ion-tabs>
 
