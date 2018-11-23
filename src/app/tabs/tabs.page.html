@@ -8,11 +8,7 @@
   
 </div>
 
-  <ion-fab *ngIf="role == 'visitor' && loginDisplay == true" vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button (click)='goToLogin()'>
-      <ion-icon name="person"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+
 
   <ion-tabs class='tabbar-tangofury' color="dark" tabbar-highlight=true [tabbarPlacement]=tabPlacement [tabbarLayout]=tabLayout>
      <ion-tab label="Home" icon="home" href="/tabs/(home:home)">
@@ -64,15 +60,29 @@
   </ion-tabs>
 -->
 
+  <ion-fab *ngIf="role == 'visitor' && loginDisplay == true" vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)='goToLogin()'>
+      <ion-icon name="person"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+
+  <ion-fab [vertical]="tabPlacement" horizontal="center" slot="fixed">
+    <ion-fab-button class='logoTangoFury' color="white" (click)='goToAbout()'>
+      <img (click)="goToAbout()" class='logo-tf clickable' alt='logo Tango Fury' src="assets/img/logo-tangofury.png"  >
+    </ion-fab-button>
+  </ion-fab>
+
 <ion-tabs color="dark" class='center toolbar-tf'>
   <ion-tab tab="home">
     <ion-router-outlet name="home"></ion-router-outlet>
   </ion-tab>
-  <ion-tab tab="about">
-    <ion-router-outlet name="about"></ion-router-outlet>
-  </ion-tab>
   <ion-tab tab="latest">
     <ion-router-outlet name="latest"></ion-router-outlet>
+  </ion-tab>
+  <ion-tab tab="space">
+    test
   </ion-tab>
   <ion-tab tab="tango-maestros">
       <ion-router-outlet name="tango-maestros"></ion-router-outlet>
@@ -91,9 +101,9 @@
         <ion-icon name="film"></ion-icon>
         <ion-label>Latest</ion-label>
       </ion-tab-button>
-  
-      <ion-tab-button tab="about"(click)="goToAbout()">
-        <img (click)="goToAbout()" class='logo-tf clickable' alt='logo Tango Fury' src="assets/img/logo-tangofury.png"  >
+
+      <ion-tab-button tab="space" href="/tabs/(about:about)">
+        <ion-label>&nbsp;</ion-label>
       </ion-tab-button>
   
       <ion-tab-button tab="tango-maestros" href="/tabs/(tango-maestros:tango-maestros)">

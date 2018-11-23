@@ -21,8 +21,15 @@ a.tab-btn-selected{
       }
 }
 
-    
+.logoTf{/*
+    height:6em;
+    position:fixed;
+    */
+}    
+
 .logo-tf{
+    height:6em;
+    /*
     height:6em;
     position:fixed;
     @media screen and (min-width:790px){
@@ -30,8 +37,22 @@ a.tab-btn-selected{
         
         }
     @media screen and (max-width:790px){
-        margin-top:-3em;
+       // margin-top:-3em;
         
   }
+  */
     
+}
+
+ion-fab-button.logoTangoFury{
+    img{
+        height:4em;
+        width:4em;  
+    }
+    button{
+        background:transparent !important;
+        :host{
+            background:transparent !important;   
+        }
+    }
 }
