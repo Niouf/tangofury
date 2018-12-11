@@ -72,7 +72,7 @@ h2{
 }
 
 .googleplay{
-  max-width:200px;
+  //max-width:200px;
 }
 
 .connect-box{
@@ -86,21 +86,25 @@ h2{
     text-align: center;
   }
 
-  .card-title {
+  .card-title-app {
     position: absolute;
-    top: 15%;
+        top: 15%;
+        text-align:center;
+        margin-left:auto;
+        margin-right:auto;
     font-size: 2.2em;
-    width: 100%;
+    //width: 100%;
     font-weight: bold;
     color: #fff;
-    margin-right:15px;
+    width:100%;
+
   }
 
   .card-subtitle {
-    font-size: 1.5em;
+    font-size: 1.3em;
     position: absolute;
     top: 40%;
-    width: 100%;
+    width: 90%;
     color: #fff;
     margin-right:15px;
     text-align:center;
