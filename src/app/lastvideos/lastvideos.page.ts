@@ -244,6 +244,12 @@ export class LastvideosPage {
 
   doRefresh(event) {
     this.loadInfos().then(()=>{
+      this.loadVideos(0);
+      this.loadVals(0);
+      this.loadMilongas(0);
+      this.loadLessons(0);
+      this.loadOthers(0); 
+      console.log("refresh fin");
       event.target.complete();
     });
   }

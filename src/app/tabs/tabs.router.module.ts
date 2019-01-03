@@ -10,6 +10,98 @@ import { PlaylistPage } from '../playlist/playlist.page';
 import { MaestroPage } from '../maestro/maestro.page';
 import { AllselectionsPage } from '../allselections/allselections.page';
 
+
+const routes: Routes = [
+  {
+    path: 'tabs',
+    component: TabsPage,
+    children: [
+      {
+        path: 'home',
+        children: [
+          {
+            path: '',
+            loadChildren: '../home/home.module#HomePageModule'
+          }
+        ]
+      }
+      ,
+      {
+        path: 'tango-maestros',
+        children: [
+          {
+            path: '',
+            loadChildren: '../maestro-list/maestro-list.module#MaestroListPageModule'
+          }
+        ]
+      },
+      {
+        path: 'tango-maestros/:slug',
+        children: [
+          {
+            path: '',
+            loadChildren: '../maestro/maestro.module#MaestroPageModule'
+          }
+        ]
+      },
+      {
+        path: 'latest',
+        children: [
+          {
+            path: '',
+            loadChildren: '../lastvideos/lastvideos.module#LastvideosPageModule'
+          }
+        ]
+      },
+      {
+        path: 'playlists',
+        children: [
+          {
+            path: '',
+            loadChildren: '../playlist-list/playlist-list.module#PlaylistListPageModule'
+          }
+        ]
+      },
+      {
+        path: 'playlist-user/:userkey/:key',
+        children: [
+          {
+            path: '',
+            loadChildren: '../playlist/playlist.module#PlaylistPageModule'
+          }
+        ]
+      }
+      ,
+      {
+        path: 'selection/:userkey/:key',
+        children: [
+          {
+            path: '',
+            loadChildren: '../playlist/playlist.module#PlaylistPageModule'
+          }
+        ]
+      } 
+      ,
+      {
+        path: 'tango-selections-all',
+        children: [
+          {
+            path: '',
+            loadChildren: '../allselections/allselections.module#AllselectionsPageModule'
+          }
+        ]
+      } 
+    ]
+  }
+  ,
+  {
+    path: '',
+    redirectTo: '/tabs/home',
+    pathMatch: 'full'
+  }
+];
+
+/*
 const routes: Routes = [
   {
     path: 'tabs',
@@ -17,7 +109,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/tabs/(home:home)',
+        redirectTo: '/tabs/home',
         pathMatch: 'full',
       },
       {
@@ -68,6 +160,7 @@ const routes: Routes = [
     pathMatch: 'full'
   }
 ];
+*/
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

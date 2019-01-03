@@ -27,14 +27,15 @@ export class MaestroProvider {
   loadMaestros(dateStart): Promise<any>{
     return new Promise((resolve, reject) => {
       if(this.maestros.length>0)resolve(this.maestros);
-
+      var start_time = new Date().getTime();
       //Recupere les maestros de firebase :)
       firebase.database().ref(`/maestros`).once("value")
       .then((querySnapshot) => {
+        var request_time = new Date().getTime() - start_time;
+        console.log(" requete maestro "+request_time)
         let arr=[];
-
+        
         querySnapshot.forEach(function (doc) {  
-
 
           var imageClear=doc.child("image").val().replace("2018/03/","").replace("2018/04/","").replace("/","");
           
@@ -60,7 +61,7 @@ export class MaestroProvider {
           arr.push(maestro);
           //this.maestros.push(maestro);
         });
-
+    
         if (arr.length > 0) {
           this.maestros=arr;
           //this.maestros.reverse();

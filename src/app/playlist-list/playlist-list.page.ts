@@ -86,7 +86,7 @@ removePlaylist(playList){
 
 
 showPlaylist(playList){
-  let urlPL=`/tabs/(playlist-list:playlist-user/${this.userId}/${playList.key})`;
+  let urlPL=`/tabs/playlist-user/${this.userId}/${playList.key}`;
   //urlPL=`/tabs/(home:playlist/NbtwzggJpfYmu1rN4lqdCNBBSVu1/${playList.key})`
   
   this.router.navigateByUrl(urlPL);

@@ -64,13 +64,16 @@ export class GeneralProvider {
         message: 'Loading many stuff, Tangofury will be ready soon !',
       });
       await loading.present();
+      var start_time = new Date().getTime();
 
       //Chargement des maestros
+      
       await this.maestroService.loadMaestros(new Date()).then(
         ()=>{
           this.loadMaestroInfos=true;
-          console.log("maestro termine")
-          resolve(this.loadMaestroInfos);   
+          var request_time = new Date().getTime() - start_time;
+          console.log("maestro termine "+request_time)
+          resolve(this.loadMaestroInfos);
         }
       );
       
@@ -82,7 +85,8 @@ export class GeneralProvider {
             selection.image=imageFire;
             this.selections.push(selection);
           });
-          console.log("selection termine")
+          var request_time = new Date().getTime() - start_time;
+          console.log("selection termine "+request_time)
           resolve(this.selections);
         });
       })
@@ -91,7 +95,8 @@ export class GeneralProvider {
       await this.videoService.getVideos(null,null,0,true).then(
         results=>{
           this.videoService.setTopVideos(results);
-          console.log("top videos done")
+          var request_time = new Date().getTime() - start_time;
+          console.log("top videos done "+request_time)
         }
       );
 
@@ -102,7 +107,8 @@ export class GeneralProvider {
             this.user=user;
             this.userId=user.key;
             this.profileService.setRole(user.role);
-            console.log("loading user ok")
+            var request_time = new Date().getTime() - start_time;
+            console.log("loading user ok "+request_time)
             this.profileService.logConnexion();
           }else{
             this.profileService.setRole("visitor");
@@ -114,11 +120,13 @@ export class GeneralProvider {
       if(this.profileService.retrieveRole()!='visitor'){
         await this.maestroService.LoadListFavorites(this.user).then(list=>{
           this.maestroService.setFavoritesMaestros(list)
-          console.log("loading favs ok")
+          var request_time = new Date().getTime() - start_time;
+          console.log("loading favs ok "+request_time)
         });
 
         await this.profileService.loadVideosWatched(this.profileService.retrieveUserId()).then(()=>{
-          console.log("loading video watched ok");
+          var request_time = new Date().getTime() - start_time;
+          console.log("loading video watched ok "+request_time);
         })
         
       }

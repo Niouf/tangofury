@@ -13,7 +13,7 @@
             <ion-grid class="card-background-page ">
                 <ion-row>
                   <ion-col *ngFor="let maestro of favoritesMaestros" size="6" size-sm="6" size-md="4" size-lg="2" size-xl='2'>
-                        <ion-item class='activated' href="/tabs/(tango-maestros:maestro-details/{{maestro.slug}})" >  
+                        <ion-item class='activated' href="/tabs/tango-maestros/{{maestro.slug}}" >  
                             <ion-card>
                                 <img *ngIf="maestro.imageDisplay" src="assets/img/thumbs/{{maestro.imageDisplay}}">
                                 <div *ngIf="(maestro.newvideos>0)" class="card-title">+ {{maestro.newvideos}} videos</div>
@@ -49,7 +49,7 @@
             <ion-item *ngFor="let maestro of maestros" lines="inset" detail-push >
     
               <ion-label>
-                  <ion-button fill="clear" href='/tabs/(tango-maestros:maestro-details/{{maestro.slug}})'>{{maestro.surname}} {{maestro.nickname}} {{maestro.name}}</ion-button>
+                  <ion-button fill="clear" href='/tabs/tango-maestros/{{maestro.slug}}'>{{maestro.surname}} {{maestro.nickname}} {{maestro.name}}</ion-button>
               </ion-label>
               
               <ion-badge slot="end" *ngIf="maestro.newvideos > 0">+{{maestro.newvideos}}</ion-badge>

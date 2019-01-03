@@ -315,21 +315,21 @@ rateTF(){
 
 generateSitemap(){
   let sitemap=[
-   "https://www.tangofury.com/tabs/(home:home)",
-   "https://www.tangofury.com/tabs/(latest:latest)",
-   "https://www.tangofury.com/tabs/(tango-maestros:tango-maestros)",
-
+   "https://www.tangofury.com/tabs/home",
+   "https://www.tangofury.com/tabs/latest",
+   "https://www.tangofury.com/tabs/tango-maestros",
+   "https://www.tangofury.com/tabs/tango-selections-all",
   ]
 
   this.playlistService.getSelections().then((selections)=>{
     selections.forEach(selection=>{
-      sitemap.push("https://www.tangofury.com/tabs/(home:selection/NbtwzggJpfYmu1rN4lqdCNBBSVu1/"+selection.key+")")
+      sitemap.push("https://www.tangofury.com/tabs/selection/NbtwzggJpfYmu1rN4lqdCNBBSVu1/"+selection.key)
     })
   });
 
   var maestroList= this.MaestroService.getMaestros();
   maestroList.forEach(maestro=>{
-    sitemap.push("https://www.tangofury.com/tabs/(tango-maestros:maestro-details/"+maestro.slug+")");
+    sitemap.push("https://www.tangofury.com/tabs/tango-maestros/"+maestro.slug+"");
   })
 
   return sitemap;
