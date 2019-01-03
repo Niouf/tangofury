@@ -60,10 +60,10 @@ ion-toolbar{
   display: none;
 }
 
+ 
 @media (min-width: 992px) {
   .show-when-lg {
     display: block;
-    display: none;
   }
   .hide-when-lg {
     display: none;
@@ -73,10 +73,21 @@ ion-toolbar{
 @media (min-width: 576px) {
   .show-when-sm {
     display: block;
-    display: none;
   }
   .hide-when-sm {
     display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .hide-for-small{
+    display:none;
+  }
+}
+
+@media (min-width: 576px) {
+  .hide-for-tall{
+    display:none;
   }
 }
 
