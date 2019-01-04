@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="tango.fury" version="3.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="tango.fury" version="3.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>tangofury</name>
-    <description>An awesome Ionic/Cordova app.</description>
+    <description>Discover new tango artists and videos.</description>
     <author email="fab.grignoux@gmail.com" href="https://www.tangofury.com.com/">Tango Fury</author>
     <content src="index.html" />
     <access origin="*" />
@@ -85,5 +85,5 @@
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
     <plugin name="cordova-plugin-filechooser" spec="^1.0.1" />
-    <engine name="android" spec="^7.1.2" />
+    <engine name="android" spec="^7.1.4" />
 </widget>

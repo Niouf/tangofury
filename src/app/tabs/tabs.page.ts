@@ -35,8 +35,12 @@ export class TabsPage {
     if (this.platform.is("cordova")) {
       this.loginDisplay=false;
       this.authService.lockAuth(this.role);
+      this.tabPlacement="top";
+    }else{
+      this.tabPlacement="bottom";
     }
 
+    /*
     if (this.platform.isPortrait()) {
       console.log("bottom")
       this.tabPlacement="bottom";
@@ -48,6 +52,7 @@ export class TabsPage {
       this.tabLayout="icon-start";
       this.tabMode="desktop";
     }
+    */
 
     
   }

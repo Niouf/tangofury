@@ -17,8 +17,8 @@
 
 
 
-<ion-tabs  color="dark" class='center toolbar-tf hide-for-tall'>
-  <ion-tab-bar slot="bottom" class='hide-for-tall' >
+<ion-tabs *ngIf="tabPlacement == 'bottom'" color="dark" class='center toolbar-tf'>
+  <ion-tab-bar slot="bottom" >
 
       <ion-tab-button tab="home" href="/home">
         <ion-icon name="home"></ion-icon>
@@ -43,14 +43,12 @@
         <ion-icon name="albums"></ion-icon>
         <ion-label>Playlists</ion-label>
       </ion-tab-button>
-
-
   </ion-tab-bar>
 </ion-tabs>
 
 
-<ion-tabs  color="dark" class='center toolbar-tf hide-for-small'>
-  <ion-tab-bar slot="top" class='hide-for-small' >
+<ion-tabs  *ngIf="tabPlacement == 'top'" color="dark" class='center toolbar-tf'>
+  <ion-tab-bar slot="top" >
 
       <ion-tab-button tab="home" href="/home">
         <ion-icon name="home"></ion-icon>

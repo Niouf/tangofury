@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tango.fury"
     android:hardwareAccelerated="true"
-    android:versionCode="30001"
-    android:versionName="3.0.1" >
+    android:versionCode="30004"
+    android:versionName="3.0.4" >
 
     <uses-sdk
         android:minSdkVersion="19"
