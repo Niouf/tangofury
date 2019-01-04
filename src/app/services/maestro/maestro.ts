@@ -29,7 +29,7 @@ export class MaestroProvider {
       if(this.maestros.length>0)resolve(this.maestros);
       var start_time = new Date().getTime();
       //Recupere les maestros de firebase :)
-      firebase.database().ref(`/maestros`).once("value")
+      firebase.database().ref(`/maestros-infos`).once("value")
       .then((querySnapshot) => {
         var request_time = new Date().getTime() - start_time;
         console.log(" requete maestro "+request_time)
@@ -41,7 +41,7 @@ export class MaestroProvider {
           
           var maestro = <IMaestro>{
             key: doc.key,
-            id:doc.child("id").val(),
+            idmaestro:doc.child("idmaestro").val(),
             name:doc.child("name").val(),
             slug:doc.child("slug").val(),
             surname: doc.child("surname").val(),
@@ -56,15 +56,13 @@ export class MaestroProvider {
             description: doc.child("description").val(),
             isFavorite:false
           };
-
+          
           maestro.videos=doc.child("videos").val();
           arr.push(maestro);
-          //this.maestros.push(maestro);
         });
     
         if (arr.length > 0) {
           this.maestros=arr;
-          //this.maestros.reverse();
           resolve(this.maestros);
         } else {
             resolve(null);
@@ -136,7 +134,7 @@ export class MaestroProvider {
          let fav=[];
          var maestroList=this.getMaestros();
 
-          firebase.database().ref("maestros/"+maestroUser +"/videos").orderByChild("datePublication").limitToLast(10)
+          firebase.database().ref("maestros-infos/"+maestroUser +"/videos").orderByChild("datePublication").limitToLast(10)
           .once("value")
           .then((querySnapshot) => {
             var cpt=0;
@@ -144,10 +142,8 @@ export class MaestroProvider {
               if(user.lastconnexion<=doc.child("datePublication").val())cpt++;
             });
             
-            
-            maestroList.map(maestro=>{
-              
-              if(maestro.key==maestroUser){
+            maestroList.map(maestro=>{ 
+              if(maestro.idmaestro==maestroUser){
                 maestro.newvideos=cpt;
                 arr.push(maestro);
               }
@@ -155,63 +151,7 @@ export class MaestroProvider {
           });
       })
       
-        
-        
-      
       resolve(arr);
-
-      /*
-      if(this.favoritesMaestros.length>0)resolve(this.favoritesMaestros);
-
-      firebase.auth().onAuthStateChanged(
-        user => {
-          if(user){
-            firebase.database().ref(`/userProfile/${user.uid}/maestros/`).once("value")
-            .then((querySnapshot) => {
-             
-              var maestroList=this.getMaestros();
-              let arr = [];
-
-              querySnapshot.forEach(function (doc) {
-                  for( let maestro of maestroList){
-
-                    if(maestro.key==doc.val()){
-                      maestro.isFavorite=true;
-                      //récupère les nouvelles videos depuis la date saisie
-                      
-                      firebase.database().ref("maestros/"+maestro.key +"/videos").orderByChild("datePublication").limitToLast(10)
-                      .once("value")
-                      .then((querySnapshot) => {
-                        var cpt=0;
-                        querySnapshot.forEach(function (doc) {
-                          if(dateStart<=doc.child("dateAdd").val())cpt++;
-                        });
-                        maestro.newvideos=cpt;
-
-                      });
-                      
-                      arr.push(maestro);
-                    }
-                  }
-              });
-              
-              
-              if (arr.length > 0) {
-                this.setFavoritesMaestros(arr);
-                resolve(arr);
-              } else {
-                  resolve([]);
-              }
-
-            })
-            .catch((error: any) => {
-                reject(error);
-            });
-          }
-         }
-       );
-       */
-
     });
   }
 
@@ -268,12 +208,12 @@ export class MaestroProvider {
 
 
 
-  newMaestro(maestro){
+   newMaestro(maestro){
     return new Promise((resolve, reject) => {
       firebase.auth().onAuthStateChanged(
         user => {
           if(user){
-                var uid=firebase.database().ref(`/maestros/`).push({
+             var uid=firebase.database().ref(`/maestros/`).push({
                   name: maestro.name,
                   surname: maestro.surname,
                   nickname: maestro.nickname,
@@ -286,6 +226,14 @@ export class MaestroProvider {
                   description:maestro.description,
                   slug:maestro.slug
                 });
+
+                //recherche du maestro puis clonage
+                this.getMaestro(maestro.slug).then(
+                  maestro=>{
+                    this.copyMaestro(maestro);
+                  }
+                );
+              
                 resolve(uid);
 
               this.loadMaestros(new Date());
@@ -294,12 +242,36 @@ export class MaestroProvider {
     });
   }
 
+  //Utile pour recréer la liste des maestros
+  copyMaestro(maestro){
+    return new Promise((resolve, reject) => {
+        firebase.database().ref(`/maestros-infos/`).push({
+          idmaestro:maestro.key,
+          name: maestro.name,
+          surname: maestro.surname,
+          nickname: maestro.nickname,
+          role : maestro.role,
+          image : maestro.image,
+          siteweb:maestro.siteweb,
+          facebook:maestro.facebook,
+          wikipedia:maestro.wikipedia,
+          homonyme:maestro.homonyme,
+          description:maestro.description,
+          slug:maestro.slug
+        }).then(()=>{
+            //console.log("maestro copié",maestro)
+            resolve(true);
+          }
+        );
+    });
+  }
+
 
   editMaestro(maestro){
     firebase.auth().onAuthStateChanged(
       user => {
         if(user){
-          firebase.database().ref(`/maestros/${maestro.key}`).update({
+          firebase.database().ref(`/maestros-infos/${maestro.key}`).update({
             name: maestro.name,
             surname: maestro.surname,
             nickname: maestro.nickname,
@@ -312,6 +284,26 @@ export class MaestroProvider {
             description:maestro.description,
             slug:maestro.slug
           });
+
+          firebase.database().ref(`/maestros`).orderByChild('slug').equalTo(maestro.slug).once("value").then(
+            (querySnapshot) => {
+              querySnapshot.forEach(function (doc) {
+                firebase.database().ref(`/maestros/${doc.key}`).update({
+                  name: maestro.name,
+                  surname: maestro.surname,
+                  nickname: maestro.nickname,
+                  role : maestro.role,
+                  image : maestro.image,
+                  siteweb:maestro.siteweb,
+                  facebook:maestro.facebook,
+                  wikipedia:maestro.wikipedia,
+                  homonyme:maestro.homonyme,
+                  description:maestro.description,
+                  slug:maestro.slug
+                });
+              });
+            }
+          );
         }
     });
   }
@@ -321,7 +313,14 @@ export class MaestroProvider {
     firebase.auth().onAuthStateChanged(
       user => {
         if(user){
-            firebase.database().ref(`/maestros/`).child(maestro.key).remove();
+            firebase.database().ref(`/maestros-infos/`).child(maestro.key).remove();
+            firebase.database().ref(`/maestros`).orderByChild('slug').equalTo(maestro.slug).once("value").then(
+              (querySnapshot) => {
+                querySnapshot.forEach(function (doc) {
+                  firebase.database().ref(`/maestros/`).child(doc.key).remove();
+                });
+              }
+            );
           }
         }
       );

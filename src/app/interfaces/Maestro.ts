@@ -1,6 +1,7 @@
     export interface IMaestro {
         key:string;
         id: number;
+        idmaestro:string;
         name: string;
         surname: string;
         nickname: string;

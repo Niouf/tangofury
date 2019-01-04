@@ -101,6 +101,7 @@ export class LastvideosPage {
     this.role=this.profileService.returnRole();
     this.favoritesMaestros=this.maestroService.getFavoritesMaestros();
     this.topVideos=this.videoService.getTopvideos(0);
+    return true;
   }
   
 
@@ -243,7 +244,6 @@ export class LastvideosPage {
 
 
   doRefresh(event) {
-    this.loadInfos().then(()=>{
       this.loadVideos(0);
       this.loadVals(0);
       this.loadMilongas(0);
@@ -251,7 +251,6 @@ export class LastvideosPage {
       this.loadOthers(0); 
       console.log("refresh fin");
       event.target.complete();
-    });
   }
 
 
