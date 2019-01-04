@@ -109,7 +109,15 @@ export class HomePage {
     });
   }
 
+  goToMaestro(maestro){ 
+    var link='/tabs/tango-maestros/'+maestro.slug;
+    this.router.navigateByUrl(link);
+    return false;
+  }
 
+  goToAllSelections(){
+    this.router.navigateByUrl(`/tabs/tango-selections-all`);
+  }
 
   goToPlaylist(playlist){
     this.router.navigateByUrl(`/tabs/(home:selection/NbtwzggJpfYmu1rN4lqdCNBBSVu1/${playlist.key})`);

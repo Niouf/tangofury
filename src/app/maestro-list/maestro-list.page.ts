@@ -179,6 +179,12 @@ export class MaestroListPage implements OnInit {
     }
   }
 
+  goToMaestro(maestro){ 
+    var link='/tabs/tango-maestros/'+maestro.slug;
+    this.router.navigateByUrl(link);
+    return false;
+  }
+
   async addMaestro(){
     let modal = await this.modalCtrl.create({
       component:ModalMaestroComponent
