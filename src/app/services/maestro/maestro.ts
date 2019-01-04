@@ -78,7 +78,7 @@ export class MaestroProvider {
 
   getMaestro(slug): Promise<any>{
     return new Promise((resolve, reject) => {
-      firebase.database().ref(`/maestros`).orderByChild('slug').equalTo(slug).once("value").then(
+      firebase.database().ref(`/maestros-infos`).orderByChild('slug').equalTo(slug).once("value").then(
         (querySnapshot) => {
           querySnapshot.forEach(function (doc) {
             var imageClear=doc.child("image").val().replace("2018/03/","").replace("2018/04/","").replace("/","");
