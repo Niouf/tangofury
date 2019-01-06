@@ -104,6 +104,7 @@ export class HomePage {
   }
 
   doRefresh(event) {
+    this.generalService.reInitFirstLoad();
     this.loadInfos().then(()=>{
       event.target.complete();
     });

@@ -43,8 +43,6 @@ export class VideoProvider {
 
   getVideos(maestro,type="",offset=0,topvideos=false):Promise<any>{
     return new Promise((resolve)=>{
-
-
       if(maestro==null){
         if(type==null){
           if(topvideos==true){

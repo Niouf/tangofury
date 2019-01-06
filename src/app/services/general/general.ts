@@ -143,6 +143,9 @@ export class GeneralProvider {
     return this.firstLoad;
   }
 
+  reInitFirstLoad(){
+    this.firstLoad=false;
+  }
 
 
   async presentAlert(){
