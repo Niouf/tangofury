@@ -35,9 +35,9 @@ export class TabsPage {
     if (this.platform.is("cordova")) {
       this.loginDisplay=false;
       this.authService.lockAuth(this.role);
-      this.tabPlacement="top";
-    }else{
       this.tabPlacement="bottom";
+    }else{
+      this.tabPlacement="top";
     }
 
     /*
