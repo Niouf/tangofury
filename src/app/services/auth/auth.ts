@@ -19,9 +19,6 @@ export class AuthProvider {
 
   }
 
-
-
-
   getUser(){
     return this.user;
   }
