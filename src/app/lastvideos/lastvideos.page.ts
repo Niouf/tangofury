@@ -130,6 +130,7 @@ export class LastvideosPage {
             });
             
             if(testPresent==true){
+              console.log(elementResult.title)
               this.videos.push(elementResult);
             }
           });
@@ -245,6 +246,14 @@ export class LastvideosPage {
 
 
   doRefresh(event) {
+      this.videos =[];
+      this.videosVals=[];
+      this.videosMilongas=[];
+      this.videosOthers=[];
+      this.videosLessons=[];
+      this.videosTango=[];
+      this.topVideos = [];
+
       this.generalService.reInitFirstLoad();
       this.loadInfos().then(
         ()=>{
