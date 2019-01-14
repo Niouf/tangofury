@@ -111,13 +111,13 @@ export class GeneralProvider {
             console.log("loading user ok "+request_time)
             this.profileService.logConnexion();
           }else{
-            this.profileService.setRole("visitor");
+            this.profileService.setRole("user");
           }
         }
       );
 
       
-      if(this.profileService.retrieveRole()!='visitor'){
+      if(this.profileService.retrieveRole()!='user'){
         await this.maestroService.LoadListFavorites(this.user).then(list=>{
           this.maestroService.setFavoritesMaestros(list)
           var request_time = new Date().getTime() - start_time;
