@@ -142,7 +142,7 @@ export class ItemVideoComponent implements OnInit,OnChanges {
         text: 'Cancel',
         icon:"",
         handler: () => {
-          console.log("cancel");
+          //console.log("cancel");
         }
       }
     );

@@ -102,7 +102,7 @@ export class ProfileProvider {
 
   loadVideosWatched(userId): Promise<any>{
     return new Promise((resolve, reject) => {
-            firebase.database().ref(`/userProfile/${userId}/videos-watched/`).once("value")
+            firebase.database().ref(`/userProfile/${userId}/videos-watched/`).limitToLast(150).once("value")
             .then((querySnapshot) => {
               let arr = [];
               querySnapshot.forEach(function (doc) {

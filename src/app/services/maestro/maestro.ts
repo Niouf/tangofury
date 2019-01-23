@@ -32,7 +32,6 @@ export class MaestroProvider {
       firebase.database().ref(`/maestros-infos`).once("value")
       .then((querySnapshot) => {
         var request_time = new Date().getTime() - start_time;
-        console.log(" requete maestro "+request_time)
         let arr=[];
         
         querySnapshot.forEach(function (doc) {  
@@ -131,24 +130,24 @@ export class MaestroProvider {
       let maestroIds=Object.values(user.maestros);
 
       maestroIds.map(maestroUser=>{
-         let fav=[];
          var maestroList=this.getMaestros();
 
-          firebase.database().ref("maestros-infos/"+maestroUser +"/videos").orderByChild("datePublication").limitToLast(10)
-          .once("value")
-          .then((querySnapshot) => {
+         maestroList.map(maestro=>{ 
+          if(maestro.idmaestro==maestroUser){
             var cpt=0;
-            querySnapshot.forEach(function (doc) {
-              if(user.lastconnexion<=doc.child("datePublication").val())cpt++;
-            });
-            
-            maestroList.map(maestro=>{ 
-              if(maestro.idmaestro==maestroUser){
+            //Recupere les 10 dernieres videos
+            firebase.database().ref("maestros/"+maestro.key +"/videos").orderByChild("datePublication").limitToLast(10)
+              .once("value")
+              .then((querySnapshot) => {
+                querySnapshot.forEach(function (doc) {
+                  if(user.lastconnexion<=doc.child("datePublication").val())cpt++;
+                });
+
                 maestro.newvideos=cpt;
                 arr.push(maestro);
-              }
-            })
-          });
+              });
+          };
+        });
       })
       
       resolve(arr);
@@ -259,7 +258,6 @@ export class MaestroProvider {
           description:maestro.description,
           slug:maestro.slug
         }).then(()=>{
-            //console.log("maestro copié",maestro)
             resolve(true);
           }
         );

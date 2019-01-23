@@ -1,6 +1,6 @@
 import { Component  } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController,LoadingController,ModalController,AlertController,Platform  } from '@ionic/angular';
+import { NavController,LoadingController,ModalController  } from '@ionic/angular';
 import { MaestroProvider } from '../services/maestro/maestro';
 import { ProfileProvider } from '../services/profile/profile';
 import { PlaylistProvider } from '../services/playlist/playlist';
@@ -34,7 +34,6 @@ export class HomePage {
   favoritesMaestros= new Array<IMaestro>();
 
   constructor(
-    private platform:Platform ,
     private videoService:VideoProvider,
     public modalCtrl: ModalController,
     private loadingCtrl: LoadingController,

@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   initializeApp() {
         if (this.swUpdate.isEnabled) {
             this.swUpdate.available.subscribe((evt) => {
-                console.log('service worker updated');
+                //console.log('service worker updated');
             });
     
             this.swUpdate.checkForUpdate().then(() => {

@@ -93,7 +93,6 @@ async clearVideos(){
         if(needle.key != video.key){
           if(video.topVideo!=true){
             //supprime dans le general mais pas dans les maestros
-            console.log("doublon "+video.title)
             this.videosService.deleteVideo(video);
             
             //supprime dans le general et dans le maestro

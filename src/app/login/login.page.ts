@@ -57,7 +57,7 @@ export class LoginPage implements OnInit {
 
   async loginUser() {
      if (!this.loginForm.valid) {
-       console.log( `Form is not valid yet, current value: ${this.loginForm.value}` );
+       //console.log( `Form is not valid yet, current value: ${this.loginForm.value}` );
      } else {
        const email = this.loginForm.value.email;
        const password = this.loginForm.value.password;
@@ -94,7 +94,7 @@ export class LoginPage implements OnInit {
       // this.router.navigate(['/anyPage']);
 
     }, error => {
-      console.log('\n\nERROR:\n' + error.message + '\n\n');
+      //console.log('\n\nERROR:\n' + error.message + '\n\n');
     });
   }
 

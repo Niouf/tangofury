@@ -250,7 +250,6 @@ export class VideoProvider {
 
   deleteGeneralVideo(video){
     firebase.database().ref("videos/"+video.key).set(null);
-    console.log("deleting video "+video.title);
   }
 
 
@@ -268,7 +267,6 @@ export class VideoProvider {
             if(operation=="delete"){
               video.valid=0;
               firebase.database().ref(target+"/"+doc.key).set(video);
-              console.log("deleting "+video.title);
             }
 
             if(operation=="setType"){

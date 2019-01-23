@@ -130,7 +130,6 @@ export class LastvideosPage {
             });
             
             if(testPresent==true){
-              console.log(elementResult.title)
               this.videos.push(elementResult);
             }
           });
@@ -262,7 +261,6 @@ export class LastvideosPage {
           this.loadMilongas(0);
           this.loadLessons(0);
           this.loadOthers(0); 
-          console.log("refresh fin");
           event.target.complete();
         }
       ); 

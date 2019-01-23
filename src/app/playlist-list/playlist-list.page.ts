@@ -123,7 +123,7 @@ goToLogin(){
       text: 'Cancel',
       icon:"",
       handler: () => {
-          console.log("cancel");
+         // console.log("cancel");
       }
     }
   );

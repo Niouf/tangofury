@@ -82,7 +82,6 @@ export class ModalPlaylistEditComponent {
   }
 
   onFileSelected(event){
-    console.log(event.target.files[0]);
     this.selectedFile=event.target.files[0];
   }
 
@@ -90,8 +89,6 @@ export class ModalPlaylistEditComponent {
     
     this.afStorage.upload('/selections/'+this.selectedFile.name, this.selectedFile).then(msg=>{
       this.imagePl=this.selectedFile.name;
-      console.log(this.selectedFile.name);
-      console.log("upload terminé",msg);
     });
   }
   

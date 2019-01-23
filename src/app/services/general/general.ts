@@ -72,7 +72,6 @@ export class GeneralProvider {
         ()=>{
           this.loadMaestroInfos=true;
           var request_time = new Date().getTime() - start_time;
-          console.log("maestro termine "+request_time)
           resolve(this.loadMaestroInfos);
         }
       );
@@ -86,17 +85,17 @@ export class GeneralProvider {
             this.selections.push(selection);
           });
           var request_time = new Date().getTime() - start_time;
-          console.log("selection termine "+request_time)
+          //console.log("selection termine "+request_time)
           resolve(this.selections);
         });
       })
 
       //chargement des tops videos
-      await this.videoService.getVideos(null,null,0,true).then(
+      this.videoService.getVideos(null,null,0,true).then(
         results=>{
           this.videoService.setTopVideos(results);
           var request_time = new Date().getTime() - start_time;
-          console.log("top videos done "+request_time)
+          //console.log("top videos done "+request_time)
         }
       );
 
@@ -108,7 +107,7 @@ export class GeneralProvider {
             this.userId=user.key;
             this.profileService.setRole(user.role);
             var request_time = new Date().getTime() - start_time;
-            console.log("loading user ok "+request_time)
+            //console.log("loading user ok "+request_time)
             this.profileService.logConnexion();
           }else{
             this.profileService.setRole("user");
@@ -121,12 +120,12 @@ export class GeneralProvider {
         await this.maestroService.LoadListFavorites(this.user).then(list=>{
           this.maestroService.setFavoritesMaestros(list)
           var request_time = new Date().getTime() - start_time;
-          console.log("loading favs ok "+request_time)
+          //console.log("loading favs ok "+request_time)
         });
 
-        await this.profileService.loadVideosWatched(this.profileService.retrieveUserId()).then(()=>{
+        this.profileService.loadVideosWatched(this.profileService.retrieveUserId()).then(()=>{
           var request_time = new Date().getTime() - start_time;
-          console.log("loading video watched ok "+request_time);
+          //console.log("loading video watched ok "+request_time);
         })
         
       }

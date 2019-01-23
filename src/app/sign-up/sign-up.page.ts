@@ -50,7 +50,7 @@ export class SignUpPage {
 
   signupUser(){
     if (!this.signupForm.valid) {
-      console.log( `Need to complete the form, current value: ${this.signupForm.value}` );
+      //console.log( `Need to complete the form, current value: ${this.signupForm.value}` );
     } else {
       const email: string = this.signupForm.value.email;
       const password: string = this.signupForm.value.password;
