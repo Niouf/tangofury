@@ -78,7 +78,7 @@ export class GeneralProvider {
       
       //Chargement des séléctions
       var storage = firebase.storage();
-      this.playlistService.getSelections().then((data)=>{
+      await this.playlistService.getSelections().then((data)=>{
         data.forEach(selection => {
           storage.ref("selections/"+selection.image).getDownloadURL().then(imageFire=>{
             selection.image=imageFire;
@@ -91,7 +91,7 @@ export class GeneralProvider {
       })
 
       //chargement des tops videos
-      this.videoService.getVideos(null,null,0,true).then(
+      await this.videoService.getVideos(null,null,0,true).then(
         results=>{
           this.videoService.setTopVideos(results);
           var request_time = new Date().getTime() - start_time;
@@ -110,13 +110,13 @@ export class GeneralProvider {
             //console.log("loading user ok "+request_time)
             this.profileService.logConnexion();
           }else{
-            this.profileService.setRole("user");
+            this.profileService.setRole("visitor");
           }
         }
       );
 
       
-      if(this.profileService.retrieveRole()!='user'){
+      if(this.profileService.retrieveRole()=='user'){
         await this.maestroService.LoadListFavorites(this.user).then(list=>{
           this.maestroService.setFavoritesMaestros(list)
           var request_time = new Date().getTime() - start_time;

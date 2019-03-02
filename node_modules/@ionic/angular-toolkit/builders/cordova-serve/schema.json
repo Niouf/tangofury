@@ -15,10 +15,6 @@
       "type": "string",
       "description": "Cordova platform to use during serve."
     },
-    "proxyConfig": {
-      "type": "string",
-      "description": "Proxy configuration file."
-    },
     "ssl": {
       "type": "boolean",
       "description": "Serve using HTTPS.",
@@ -41,12 +37,21 @@
     "sourceMap":  {
       "type": "boolean",
       "description": "Create source-map file"
+    },
+    "cordovaAssets": {
+      "type": "boolean",
+      "description": "Bundle Cordova assets with build",
+      "default": true
+    },
+    "cordovaMock": {
+      "type": "boolean",
+      "description": "Bundle empty cordova.js with build",
+      "default": false
     }
   },
   "additionalProperties": false,
   "required": [
     "cordovaBuildTarget",
-    "devServerTarget",
-    "platform"
+    "devServerTarget"
   ]
 }

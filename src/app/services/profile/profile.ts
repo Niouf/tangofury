@@ -19,7 +19,7 @@ export class ProfileProvider {
   videoWatched = [];
   nbConnexionUser=0;
   public lastConnexion;
-  role="";
+  role="visitor";
   user=[];
   userId;
 
@@ -143,14 +143,8 @@ export class ProfileProvider {
     return this.userId;
   }
 
-  getUserRole(): Promise<any>{
-    return new Promise((resolve, reject) => {
-        var role="visitor";
-        
-        if(this.role){
-          resolve(this.role);
-        }
-
+   getUserRole(): Promise<any>{
+    return new Promise((resolve, reject) => {      
         var testUser=firebase.auth().onAuthStateChanged(
           user => {
             if(user){
@@ -168,10 +162,6 @@ export class ProfileProvider {
             }
           }
         );
-
-        if(!testUser){
-          resolve("visitor");
-        }
     });
   }
 
