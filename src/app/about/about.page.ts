@@ -109,8 +109,7 @@ async clearVideos(){
 
 importVideos(){
 
-  var req=`https://www.tango-agenda.com/web/app_dev.php/fr/imports-youtube`;
-  
+  /*
   this.http.get(req).subscribe(
       result=>{
           this.resultImport="Imports completed";
@@ -122,7 +121,7 @@ importVideos(){
         this.resultImport="Imports completed";
       }
   );
-  
+  */
 
   //imports dans Firebase    
 
@@ -147,6 +146,9 @@ async launchImport(maestroList){
   
   var ytKey="AIzaSyDjZZJFivBihtQBNWhlY3s8HTci9YJ8vw0";
 
+  var deletedVideos= [];
+  deletedVideos=await this.videosService.getDeletedVideos();
+
   for(var maestro of maestroList){
 
     var search=maestro.surname+" "+maestro.name;
@@ -160,7 +162,7 @@ async launchImport(maestroList){
     this.importMaestro=maestro.surname +" "+maestro.name;
     this.resultImport="Loading ... please wait. " + " - " + this.importMaestro + " "+ cpt + "/" + maestroList.length;
 
-    await this.getVideoFromSearch(req,maestro);  
+    await this.getVideoFromSearch(req,maestro,deletedVideos);  
     cpt++;  
 
     //if(cpt>2)break;
@@ -175,7 +177,7 @@ async launchImport(maestroList){
   });
 }
 
-getVideoFromSearch(req,maestro): Promise<any>{
+getVideoFromSearch(req,maestro,deletedVideos): Promise<any>{
   return new Promise((resolve) => {
     //d'abord récupérer les videos du maestro
 
@@ -194,32 +196,38 @@ getVideoFromSearch(req,maestro): Promise<any>{
 
               var video=this.hydrateVideo(item);
               
-              //this.MaestroService.getVideosMaestro(maestro);
+              //Test pour voir si la video ne fait pas partie des videos supprimées
+              if(deletedVideos.indexOf(video.youtubeId)>-1){
+                //Video dans la liste ... on ne fait rien
+                //console.log("video supprimée")
+              }else{
+                //this.MaestroService.getVideosMaestro(maestro);
 
-              //test si la video existe
-              if(video.youtubeId){
-                //Noeud général
-                if(this.youtubeIdList.indexOf(video.youtubeId)>-1){
-                  //La vidéo existe dans le noeud général on fait rien
-                }else{
-                  //Ajout de la vidéo dans le noeud général
-                  if ( video.youtubeId !==null && video.youtubeId !=="" ){
-                      firebase.database().ref(`videos/`).push(video)
-                      .then((snap) => {
-                      
-                        video.key=snap.key;
+                //test si la video existe
+                if(video.youtubeId){
+                  //Noeud général
+                  if(this.youtubeIdList.indexOf(video.youtubeId)>-1){
+                    //La vidéo existe dans le noeud général on fait rien
+                  }else{
+                    //Ajout de la vidéo dans le noeud général
+                    if ( video.youtubeId !==null && video.youtubeId !=="" ){
+                        firebase.database().ref(`videos/`).push(video)
+                        .then((snap) => {
+                        
+                          video.key=snap.key;
 
-                        // ajout de l'id de la video dans le tableau d'id general
-                        this.youtubeIdList.push(video.youtubeId);
-                      });
+                          // ajout de l'id de la video dans le tableau d'id general
+                          this.youtubeIdList.push(video.youtubeId);
+                        });
+                    }
                   }
-                }
 
-                //Noeud du maestro
-                if(maestroVideos.indexOf(video.youtubeId)>-1){
-                }else{
-                  firebase.database().ref(`/maestros/${maestro.key}/videos/`).push(video);
-                  maestroVideos.unshift(video);
+                  //Noeud du maestro
+                  if(maestroVideos.indexOf(video.youtubeId)>-1){
+                  }else{
+                    firebase.database().ref(`/maestros/${maestro.key}/videos/`).push(video);
+                    maestroVideos.unshift(video);
+                  }
                 }
                   
                 resolve("done");
@@ -241,6 +249,8 @@ getVideoFromSearch(req,maestro): Promise<any>{
     
   });
 }
+
+
 
 
 hydrateVideo(item){

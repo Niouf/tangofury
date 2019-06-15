@@ -25,7 +25,7 @@ export class VideoProvider {
   allVals=[];
   allOthers=[];
   allLessons=[];
-  limitOffset=12;
+  limitOffset=24;
 
   constructor( 
     private loadingCtrl: LoadingController,
@@ -47,26 +47,26 @@ export class VideoProvider {
         if(type==null){
           if(topvideos==true){
             //affiche les top videos
-            var fb=firebase.database().ref(`/videos`).orderByChild("topVideo").equalTo(1).limitToLast(offset+12);
+            var fb=firebase.database().ref(`/videos`).orderByChild("topVideo").equalTo(1).limitToLast(offset+24);
             
           }else{
             //vue par défaut
-            var fb=firebase.database().ref(`/videos`).orderByChild("datePublication").limitToLast(offset+12);
+            var fb=firebase.database().ref(`/videos`).orderByChild("datePublication").limitToLast(offset+24);
           }
         }else{
-          var fb=firebase.database().ref(`/videos`).orderByChild("type").equalTo(type).limitToLast(offset+12);
+          var fb=firebase.database().ref(`/videos`).orderByChild("type").equalTo(type).limitToLast(offset+24);
         }
       }else{
         if(type==null){
-          var fb=firebase.database().ref("maestros/"+maestro.key +"/videos").orderByChild("datePublication").limitToLast(offset+12);
+          var fb=firebase.database().ref("maestros/"+maestro.key +"/videos").orderByChild("datePublication").limitToLast(offset+24);
         }else{
-          var fb=firebase.database().ref("maestros/"+maestro.key +"/videos").orderByChild("type").equalTo(type).limitToLast(offset+12);
+          var fb=firebase.database().ref("maestros/"+maestro.key +"/videos").orderByChild("type").equalTo(type).limitToLast(offset+24);
         }
       }
      
 
       var videosWatched=this.profileService.getVideosWatched();
-      
+
       fb.once("value")
       .then((querySnapshot) => {
         let arr=[];
@@ -250,8 +250,21 @@ export class VideoProvider {
 
   deleteGeneralVideo(video){
     firebase.database().ref("videos/"+video.key).set(null);
+    firebase.database().ref(`/videos-deleted/`).push(video.youtubeId);
   }
 
+
+  async getDeletedVideos(){
+    var deletedVideos=Array();
+
+    const querySnapshot= await firebase.database().ref("videos-deleted").once("value");
+
+    querySnapshot.forEach(function (doc) {
+      deletedVideos.push(doc.val());
+    });
+
+    return deletedVideos;
+  }
 
   findVideo(video,target,operation,type): Promise<any>{
     return new Promise((resolve, reject) => {

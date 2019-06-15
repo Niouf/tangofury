@@ -122,13 +122,14 @@ export class GeneralProvider {
           var request_time = new Date().getTime() - start_time;
           //console.log("loading favs ok "+request_time)
         });
-
-        this.profileService.loadVideosWatched(this.profileService.retrieveUserId()).then(()=>{
-          var request_time = new Date().getTime() - start_time;
-          //console.log("loading video watched ok "+request_time);
-        })
         
       }
+
+
+      this.profileService.loadVideosWatched(this.profileService.retrieveUserId()).then(()=>{
+        var request_time = new Date().getTime() - start_time;
+        //console.log("loading video watched ok "+request_time);
+      })
 
       await loading.dismiss();
 
@@ -141,6 +142,7 @@ export class GeneralProvider {
   tfIsLoaded(){
     return this.firstLoad;
   }
+
 
   reInitFirstLoad(){
     this.firstLoad=false;
@@ -170,8 +172,5 @@ export class GeneralProvider {
     });
     await alert.present();
   }
-
-
-
 
 }
