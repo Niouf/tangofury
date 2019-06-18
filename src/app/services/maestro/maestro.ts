@@ -133,8 +133,12 @@ export class MaestroProvider {
          var maestroList=this.getMaestros();
 
          maestroList.map(maestro=>{ 
-          if(maestro.idmaestro==maestroUser){
+          
+          if(maestro.key==maestroUser){
             var cpt=0;
+            maestro.isFavorite=true;
+            arr.push(maestro);
+
             //Recupere les 10 dernieres videos
             firebase.database().ref("maestros/"+maestro.key +"/videos").orderByChild("datePublication").limitToLast(10)
               .once("value")
@@ -144,7 +148,6 @@ export class MaestroProvider {
                 });
 
                 maestro.newvideos=cpt;
-                arr.push(maestro);
               });
           };
         });

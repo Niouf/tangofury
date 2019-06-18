@@ -115,8 +115,7 @@ export class GeneralProvider {
         }
       );
 
-      
-      if(this.profileService.retrieveRole()=='user'){
+      if(this.profileService.retrieveRole()=='user' || this.profileService.retrieveRole()=='admin'){
         await this.maestroService.LoadListFavorites(this.user).then(list=>{
           this.maestroService.setFavoritesMaestros(list)
           var request_time = new Date().getTime() - start_time;

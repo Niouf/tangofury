@@ -41,10 +41,8 @@ constructor(
   private playlistService:PlaylistProvider,
   ) {
     
-    this.profileService.getUserRole().then(role=>{
-        this.role=role;
-      }
-    );
+
+  this.role=this.profileService.returnRole();
     
 
   //****************Pour réinitialiser les videos************************

@@ -1,0 +1,39 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "tango.fury"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "tango.fury"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "tango.fury"
+    },
+    "cordova-plugin-filechooser": {
+      "PACKAGE_NAME": "tango.fury"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "tango.fury"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "tango.fury"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "tango.fury"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "tango.fury"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "tango.fury"
+    }
+  },
+  "dependent_plugins": {}
+}
