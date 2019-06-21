@@ -101,7 +101,7 @@ export class LastvideosPage {
     await this.generalService.initPage();
     this.role=this.profileService.returnRole();
     this.favoritesMaestros=this.maestroService.getFavoritesMaestros();
-    this.topVideos=this.videoService.getTopvideos(0);
+    this.topVideos=await this.videoService.getTopvideos(0);
     return true;
   }
   

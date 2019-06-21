@@ -55,51 +55,8 @@ export class HomePage {
     await this.generalService.initPage();
     this.role=this.profileService.returnRole();
     this.favoritesMaestros=this.maestroService.getFavoritesMaestros();
-    this.selections=this.playlistService.retrieveSelections();
-    this.topVideos=this.videoService.getTopvideos(0);
-  }
-
-  async loadingHome(){
-    var storage = firebase.storage();
-
-    let loading = await this.loadingCtrl.create({
-      message: 'Loading... Tango Fury will be ready soon !',
-    });
-    loading.present();
-
-    this.profileService.getUserRole().then(role=>{
-          this.role=role;
-          //------------------------- Chargement des favoris ----------------------------
-          if(this.role!="visitor"){
-            this.profileService.getLastConnexion().then((lastConnexion)=>{
-              this.maestroService.LoadListFavorites(lastConnexion).then(data=>{
-                this.favoritesMaestros=data;
-              });
-            });
-          }
-          //------------------------- Fin de Chargement des favoris ----------------------------
-        }
-    );
-    
-
-    //Chargement des séléctions
-    this.playlistService.getSelections().then((data)=>{
-      data.forEach(selection => {
-        storage.ref("selections/"+selection.image).getDownloadURL().then(imageFire=>{
-          selection.image=imageFire;
-          this.selections.push(selection);
-        });
-      });
-    }).then(()=>{
-      //chargement des top videos
-      this.videoService.getVideos(null,null,0,true).then(
-        results=>{
-          this.videoService.setTopVideos(results);
-          this.topVideos=this.videoService.getTopvideos(0);
-          loading.dismiss();
-        }
-      );
-    });
+    this.selections=await this.playlistService.getSelections();
+    this.topVideos=await this.videoService.getTopvideos(0);
   }
 
   doRefresh(event) {

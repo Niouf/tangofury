@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { IPlaylist } from '../../interfaces/Playlist';
 import { AuthProvider } from '../auth/auth';
+import { resolve } from 'dns';
 
 
 /*
@@ -19,7 +20,7 @@ export class ProfileProvider {
   videoWatched = [];
   nbConnexionUser=0;
   public lastConnexion;
-  role="visitor";
+  role="";
   user=[];
   userId;
 
@@ -143,27 +144,33 @@ export class ProfileProvider {
     return this.userId;
   }
 
-   getUserRole(): Promise<any>{
-    return new Promise((resolve, reject) => {      
-        var testUser=firebase.auth().onAuthStateChanged(
-          user => {
+  
+  getUserRole(): Promise<any>{
+    return new Promise((resolve, reject) => {
+      try {
+        firebase.auth()
+         .onAuthStateChanged(async(user) => {
             if(user){
-              var role=firebase.database().ref(`/userProfile/${user.uid}`).once("value")
+             var role= await firebase.database().ref(`/userProfile/${user.uid}`).once("value")
               .then((querySnapshot) => {
                   if(querySnapshot.val().role==null){
-                    resolve("visitor")
+                    this.role="visitor";
                   }else{
                     this.role=querySnapshot.val().role;
-                    resolve(querySnapshot.val().role);
                   }
                 })
             }else{
-              resolve("visitor");
+              this.role="visitor";
             }
-          }
-        );
+             resolve(this.role);
+         });
+      } catch {
+        reject('api failed')
+      }
     });
   }
+  
+
 
   returnRole(){
     return this.role;

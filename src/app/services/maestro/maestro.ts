@@ -177,7 +177,7 @@ export class MaestroProvider {
               });
               var cpt=0;
               for(var maestroF of this.favoritesMaestros){
-                if(maestroF.id==maestro.id){
+                if(maestroF.key==maestro.key){
                   this.favoritesMaestros.splice(cpt, 1);
                 }
                 cpt=cpt+1;

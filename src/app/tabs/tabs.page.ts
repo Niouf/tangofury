@@ -12,7 +12,7 @@ import { AuthProvider } from '../services/auth/auth';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
-  role="visitor";
+  role="";
 
   tabPlacement="top";
   tabLayout="icon-top";
@@ -30,9 +30,9 @@ export class TabsPage {
   }
 
   async loadTabsInfos(){
-    await this.profileService.getUserRole().then(role=>{
+    this.profileService.getUserRole().then(role=>{
       this.role=role;
-      console.log(this.role);
+      console.log("role",this.role);
       if (this.platform.is("cordova")) {
         this.authService.lockAuth(this.role);
       }

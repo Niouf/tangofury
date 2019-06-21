@@ -199,8 +199,16 @@ export class VideoProvider {
   }
 
 
-  getTopvideos(offset){
-    return this.topVideos.slice(offset,offset+this.limitOffset);
+  async getTopvideos(offset){
+    //chargement des tops videos
+    if(this.topVideos.length==0){
+      await this.getVideos(null,null,0,true).then(
+        results=>{
+          this.topVideos=results;
+        }
+      );
+    }
+    return this.topVideos;
   }
 
   setTopVideos(videos){

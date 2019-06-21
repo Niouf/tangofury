@@ -21,18 +21,16 @@ export class PlaylistProvider {
   }
 
 
-  getSelections(limit=6):Promise<any>{
-    
-    return new Promise((resolve)=>{
-      if(this.selections.length>0)resolve(this.selections);
+  async getSelections(limit=6){
+    if(this.selections.length == 0 || this.selections==null){
       var selections=[];
 
       var req=`/userProfile/NbtwzggJpfYmu1rN4lqdCNBBSVu1/playlists/`;
       
-      firebase.database().ref(req).orderByChild("selection").equalTo(true).limitToLast(limit).once("value")
-      .then((querySnapshot) => {
-          querySnapshot.forEach(function (doc) {
-            let arr=[];
+      await firebase.database().ref(req).orderByChild("selection").equalTo(true).limitToLast(limit).once("value",
+        (querySnapshot) => {
+          
+           querySnapshot.forEach(function (doc) {
             selections.push({
               key: doc.key,
               title: doc.child("title").val(),
@@ -40,14 +38,27 @@ export class PlaylistProvider {
               description: doc.child("description").val()
             });
           });
-          this.selections=selections.reverse();
-          resolve(selections);
-        });
-    });
-  }
+          selections=selections.reverse();
 
-  retrieveSelections(){
-    return this.selections;
+
+          selections.forEach(selection => {
+            var storage = firebase.storage();
+
+            if(selection.image.includes("selections")){
+              selections.push(selection);
+            }else{
+              storage.ref("/selections/"+selection.image).getDownloadURL().then(imageFire=>{
+                selection.image=imageFire;
+              });
+            }
+          });
+        });
+
+        this.selections=selections;
+    }
+    
+    
+    return(this.selections);
   }
 
   getPlaylistById(userKey,key): Promise<any>{

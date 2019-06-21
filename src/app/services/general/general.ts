@@ -75,29 +75,6 @@ export class GeneralProvider {
           resolve(this.loadMaestroInfos);
         }
       );
-      
-      //Chargement des séléctions
-      var storage = firebase.storage();
-      await this.playlistService.getSelections().then((data)=>{
-        data.forEach(selection => {
-          storage.ref("selections/"+selection.image).getDownloadURL().then(imageFire=>{
-            selection.image=imageFire;
-            this.selections.push(selection);
-          });
-          var request_time = new Date().getTime() - start_time;
-          //console.log("selection termine "+request_time)
-          resolve(this.selections);
-        });
-      })
-
-      //chargement des tops videos
-      await this.videoService.getVideos(null,null,0,true).then(
-        results=>{
-          this.videoService.setTopVideos(results);
-          var request_time = new Date().getTime() - start_time;
-          //console.log("top videos done "+request_time)
-        }
-      );
 
 
       //Chargement de l'utilisateur
@@ -121,14 +98,14 @@ export class GeneralProvider {
           var request_time = new Date().getTime() - start_time;
           //console.log("loading favs ok "+request_time)
         });
+
+        this.profileService.loadVideosWatched(this.profileService.retrieveUserId()).then(()=>{
+          var request_time = new Date().getTime() - start_time;
+          //console.log("loading video watched ok "+request_time);
+        })
         
       }
 
-
-      this.profileService.loadVideosWatched(this.profileService.retrieveUserId()).then(()=>{
-        var request_time = new Date().getTime() - start_time;
-        //console.log("loading video watched ok "+request_time);
-      })
 
       await loading.dismiss();
 
