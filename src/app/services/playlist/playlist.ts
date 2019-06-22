@@ -47,9 +47,12 @@ export class PlaylistProvider {
             if(selection.image.includes("selections")){
               selections.push(selection);
             }else{
+              /*
               storage.ref("/selections/"+selection.image).getDownloadURL().then(imageFire=>{
                 selection.image=imageFire;
               });
+              */
+              selection.image="https://firebasestorage.googleapis.com/v0/b/tango-videos-2ce36.appspot.com/o/selections%2F"+selection.image+"?alt=media";
             }
           });
         });

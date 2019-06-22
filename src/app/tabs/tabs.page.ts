@@ -32,7 +32,6 @@ export class TabsPage {
   async loadTabsInfos(){
     this.profileService.getUserRole().then(role=>{
       this.role=role;
-      console.log("role",this.role);
       if (this.platform.is("cordova")) {
         this.authService.lockAuth(this.role);
       }
