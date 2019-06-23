@@ -50,7 +50,7 @@ export class MaestroProvider {
             siteweb:doc.child("siteweb").val(),
             homonyme: doc.child("homonyme").val(), 
             image: imageClear,
-            imageDisplay:imageClear,
+            imageDisplay:"https://firebasestorage.googleapis.com/v0/b/tango-videos-2ce36.appspot.com/o/maestros%2F"+imageClear+".jpg?alt=media",
             role: doc.child("role").val(),
             description: doc.child("description").val(),
             isFavorite:false
@@ -94,7 +94,7 @@ export class MaestroProvider {
               siteweb:doc.child("siteweb").val(),
               homonyme: doc.child("homonyme").val(), 
               image: imageClear,
-              imageDisplay:imageClear,
+              imageDisplay:"https://firebasestorage.googleapis.com/v0/b/tango-videos-2ce36.appspot.com/o/maestros%2F"+imageClear+".jpg?alt=media",
               role: doc.child("role").val(),
               description: doc.child("description").val(),
               isFavorite:false
@@ -127,7 +127,11 @@ export class MaestroProvider {
   LoadListFavorites(user): Promise<any>{
     return new Promise((resolve, reject) => {
       let arr=[];
-      let maestroIds=Object.values(user.maestros);
+      let maestroIds=[];
+
+      if(user.maestros != undefined){
+        maestroIds=Object.values(user.maestros);
+      }
 
       maestroIds.map(maestroUser=>{
          var maestroList=this.getMaestros();

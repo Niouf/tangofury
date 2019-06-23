@@ -57,43 +57,6 @@ export class MaestroListPage implements OnInit {
     this.maestros=this.maestroService.getMaestros();
   }
 
-  /*
-  async initPage(){
-     
-    //------------------------- Chargement des maestros ----------------------------
-    var storage = firebase.storage();
-    let loading = await this.loadingCtrl.create({
-      message: 'Loading maestros',
-    });
-    await loading.present();
-
-
-
-    this.initMaestros();
-
-    this.profileService.getUserRole().then(role=>{
-          this.role=role;
-          //------------------------- Chargement des favoris ----------------------------
-          if(this.role!="visitor"){
-            this.profileService.getLastConnexion().then((lastConnexion)=>{
-              this.initFavorites(lastConnexion);
-            });
-          }
-          //------------------------- Fin de Chargement des favoris ----------------------------
-        }
-    );
-
-    await loading.dismiss();
-  } 
-
-
-  initFavorites(lastConnexion){
-    //Chargement des favoris
-    this.maestroService.LoadListFavorites(lastConnexion).then(data=>{
-      this.favoritesMaestros=data;
-    });
-  }
-  */
 
   async initMaestros(){
     let loading = await this.loadingCtrl.create({

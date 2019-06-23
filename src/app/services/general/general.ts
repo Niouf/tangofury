@@ -89,6 +89,7 @@ export class GeneralProvider {
           }else{
             this.profileService.setRole("visitor");
           }
+          //console.log("role",this.profileService.returnRole());
         }
       );
 

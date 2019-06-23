@@ -64,7 +64,7 @@
                     <ion-col *ngFor="let maestro of favoritesMaestros" size="4" size-sm="6" size-md="4" size-lg="2" size-xl='2'>
                         <ion-item class='activated' (click)="goToMaestro(maestro)" href="/tabs/tango-maestros/{{maestro.slug}}" >
                             <ion-card >
-                                <img *ngIf="maestro.imageDisplay" class='' src="assets/img/maestros/{{maestro.imageDisplay}}">
+                                <img *ngIf="maestro.imageDisplay" class='' src="{{maestro.imageDisplay}}">
                                 <div *ngIf="(maestro.newvideos>0)" class=" card-title">+ {{maestro.newvideos}} videos</div>
                             </ion-card>
                         </ion-item>
