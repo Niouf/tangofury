@@ -94,7 +94,7 @@ export class MaestroProvider {
               siteweb:doc.child("siteweb").val(),
               homonyme: doc.child("homonyme").val(), 
               image: imageClear,
-              imageDisplay:"https://firebasestorage.googleapis.com/v0/b/tango-videos-2ce36.appspot.com/o/maestros%2F"+imageClear+".jpg?alt=media",
+              imageDisplay:"https://firebasestorage.googleapis.com/v0/b/tango-videos-2ce36.appspot.com/o/maestros%2F"+imageClear+"?alt=media",
               role: doc.child("role").val(),
               description: doc.child("description").val(),
               isFavorite:false
